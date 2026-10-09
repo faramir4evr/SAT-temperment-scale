@@ -70,18 +70,6 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
-    .custom-radio:checked + label {
-      border-color: #0284c7;
-      background-color: #f0f9ff;
-      color: #0369a1;
-    }
-    .custom-radio:checked + label .radio-circle {
-      border-color: #0284c7;
-      background-color: #0284c7;
-    }
-    .custom-radio:checked + label .radio-circle-inner {
-      opacity: 1;
-    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen antialiased flex flex-col">
@@ -95,8 +83,8 @@
           </svg>
         </div>
         <div>
-          <h1 class="text-base font-bold text-slate-900 leading-tight">SAT Clinical Diagnostic Battery</h1>
-          <p class="text-xs text-slate-500">Structured Association Technique • Munakata Psychometrics</p>
+          <h1 class="text-base font-bold text-slate-900 leading-tight">SAT Full Diagnostic Battery (70 Items)</h1>
+          <p class="text-xs text-slate-500">Structured Association Technique • Munakata Psychometrics (5 Scales)</p>
         </div>
       </div>
       <div class="flex items-center space-x-2">
@@ -129,7 +117,7 @@
         <span id="progress-percent" class="font-mono text-sky-600 font-semibold">0% Completed</span>
       </div>
       <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-        <div id="progress-bar-fill" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-2 rounded-full transition-all duration-300" style="width: 5%"></div>
+        <div id="progress-bar-fill" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-2 rounded-full transition-all duration-300" style="width: 10%"></div>
       </div>
       
       <!-- Stage Nav Pills -->
@@ -140,7 +128,7 @@
         </button>
         <button id="tab-step-2" class="text-left py-1 px-2 rounded-lg font-medium text-slate-500 hover:bg-slate-50 flex items-center gap-1.5 transition">
           <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[10px]">2</span>
-          <span class="truncate">Assessment (40 Items)</span>
+          <span class="truncate">Assessment (70 Items)</span>
         </button>
         <button id="tab-step-3" class="text-left py-1 px-2 rounded-lg font-medium text-slate-400 cursor-not-allowed flex items-center gap-1.5 transition">
           <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center text-[10px]">3</span>
@@ -155,7 +143,7 @@
         <div class="border-b border-slate-100 pb-5 mb-6">
           <h2 class="text-xl font-bold text-slate-900">Clinical Administration &amp; Report Recipients</h2>
           <p class="text-sm text-slate-600 mt-1">
-            Specify the test taker details and one or more email addresses that should receive the clinical scoring breakdown, neurogenetic radar chart, and psychological interpretation upon completion.
+            Specify the test taker details and one or more email addresses that should receive the clinical scoring breakdown, neurogenetic radar chart, secondary behavioral scales, and psychological interpretation upon completion.
           </p>
         </div>
 
@@ -189,7 +177,7 @@
               <label for="clinical-notes" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
                 Clinical Context / Referral Reason
               </label>
-              <input type="text" id="clinical-notes" placeholder="e.g., Stress-induced chronic exhaustion, somatic workup"
+              <input type="text" id="clinical-notes" placeholder="e.g., Chronic neck pain, exhaustion depression workup, affective blunting"
                      class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-600 text-sm transition">
             </div>
           </div>
@@ -200,7 +188,7 @@
               <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700">
                 Report Delivery Email Addresses <span class="text-rose-500">*</span>
               </label>
-              <span class="text-xs text-slate-500">Supports multiple recipients (Patient, Doctor, Supervisor)</span>
+              <span class="text-xs text-slate-500">Supports multiple recipients (Patient, Doctor, Clinic)</span>
             </div>
             
             <p class="text-xs text-slate-600 mb-3">
@@ -210,7 +198,6 @@
             <div class="flex gap-2">
               <div class="relative flex-grow">
                 <input type="email" id="email-input-field" placeholder="Enter recipient email address (e.g. client@domain.com)"
-                       onkeydown="if(event.key==='Enter'||event.key===','){event.preventDefault();handleAddEmailClick();}"
                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-600 text-sm transition">
               </div>
               <button type="button" id="add-email-btn" onclick="handleAddEmailClick()"
@@ -229,22 +216,37 @@
             <p id="email-error-msg" class="text-xs text-rose-600 mt-1 hidden"></p>
           </div>
 
-          <!-- Psychometric Battery Overview Card -->
-          <div class="p-4 rounded-xl bg-sky-50/70 border border-sky-100 text-xs text-sky-950 space-y-1.5">
+          <!-- 5-Scale Psychometric Battery Overview Card -->
+          <div class="p-4 rounded-xl bg-sky-50/70 border border-sky-100 text-xs text-sky-950 space-y-2">
             <p class="font-bold flex items-center gap-1.5 text-sky-900">
               <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              Standardized Assessment Composition:
+              Standardized Comprehensive 5-Scale Battery (70 Items Total):
             </p>
-            <p class="text-slate-600 leading-relaxed">
-              This digital administration contains <strong>Part I: SAT Genetic Temperament Inventory</strong> (30 items, 6 subscales evaluating Cyclothymic, Viscous, Autistic, Obsessive, Anxiety-Prone, and Novelty-Seeking traits) and <strong>Part II: SAT Self-Repression Scale</strong> (10 items measuring somatic denial, emotional inhibition, and other-reward compliance). Estimated duration: 5–8 minutes.
-            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-slate-700 text-[11px] pt-1">
+              <div class="bg-white/80 p-2 rounded-lg border border-sky-200/60">
+                <strong>1. Genetic Temperaments:</strong> 30 items (6 subscales: CYC, VIS, AUT, OBS, ANX, NOV).
+              </div>
+              <div class="bg-white/80 p-2 rounded-lg border border-sky-200/60">
+                <strong>2. Self-Repression Scale:</strong> 10 items (Somatic denial, emotional masking, other-reward).
+              </div>
+              <div class="bg-white/80 p-2 rounded-lg border border-sky-200/60">
+                <strong>3. Problem-Solving Coping:</strong> 10 items (Active Confrontation vs. Evasive Avoidance).
+              </div>
+              <div class="bg-white/80 p-2 rounded-lg border border-sky-200/60">
+                <strong>4. Self-Esteem &amp; Alignment:</strong> 10 items (Innate Self-Acceptance vs. Social Mask Gap).
+              </div>
+              <div class="bg-white/80 p-2 rounded-lg border border-sky-200/60 sm:col-span-2 md:col-span-2">
+                <strong>5. Depressive Symptomatology (D-Trait):</strong> 10 items directly scoring clinical dysphoria, vegetative strain &amp; hopelessness.
+              </div>
+            </div>
+            <p class="text-slate-500 text-[11px]">Estimated completion duration: 8–12 minutes.</p>
           </div>
 
           <div class="flex justify-end pt-4">
             <button type="button" id="begin-assessment-btn" onclick="goToStep(2)" class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm shadow-md shadow-sky-600/20 transition flex items-center gap-2 cursor-pointer">
-              <span>Begin Assessment</span>
+              <span>Begin Full Assessment (70 Items)</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
@@ -254,44 +256,77 @@
       </div>
     </div>
 
-    <!-- STEP 2: The Psychometric Instrument Battery -->
+    <!-- STEP 2: The Psychometric Instrument Battery (70 Items) -->
     <div id="view-step-2" class="space-y-8 hidden">
       
       <!-- Section I: 30-Item Genetic Temperament Inventory -->
       <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
         <div class="border-b border-slate-100 pb-4 mb-6">
           <div class="flex items-center gap-2 text-xs font-semibold text-sky-600 uppercase tracking-widest">
-            <span class="w-2 h-2 rounded-full bg-sky-500"></span> Section I of II
+            <span class="w-2 h-2 rounded-full bg-sky-500"></span> Section 1 of 5
           </div>
           <h2 class="text-xl font-bold text-slate-900 mt-1">SAT Genetic Temperament Inventory (30 Items)</h2>
           <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
-            Read each statement below and determine whether it accurately describes your natural, baseline tendencies across various life circumstances. Select <strong>YES (1 point)</strong> if the statement aligns with your natural disposition, or <strong>NO (0 points)</strong> if it does not.
+            Read each statement below and determine whether it accurately describes your natural, baseline tendencies across various life circumstances. Select <strong>YES (1 pt)</strong> or <strong>NO (0 pt)</strong>.
           </p>
         </div>
-
-        <div id="genetic-questions-container" class="space-y-8">
-          <!-- Populated dynamically via JS categorized by 6 dimensions -->
-        </div>
+        <div id="genetic-questions-container" class="space-y-8"></div>
       </section>
 
       <!-- Section II: 10-Item Self-Repression Behavioral Scale -->
       <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
         <div class="border-b border-slate-100 pb-4 mb-6">
           <div class="flex items-center gap-2 text-xs font-semibold text-indigo-600 uppercase tracking-widest">
-            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> Section II of II
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> Section 2 of 5
           </div>
           <h2 class="text-xl font-bold text-slate-900 mt-1">SAT Self-Repression Behavioral Scale (10 Items)</h2>
           <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
-            Indicate how frequently you engage in each behavior or experience each state. Select 
-            <strong>Rarely (0)</strong> = Does not apply, 
-            <strong>Sometimes (1)</strong> = Moderately applies, or 
-            <strong>Frequently (2)</strong> = Strongly applies.
+            Indicate how frequently you engage in each behavior: <strong>Rarely (0)</strong> = Does not apply, <strong>Sometimes (1)</strong> = Moderately applies, <strong>Frequently (2)</strong> = Strongly applies.
           </p>
         </div>
+        <div id="repression-questions-container" class="space-y-4"></div>
+      </section>
 
-        <div id="repression-questions-container" class="space-y-4">
-          <!-- Populated dynamically via JS -->
+      <!-- Section III: 10-Item Problem-Solving Coping Behavioral Scale -->
+      <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="border-b border-slate-100 pb-4 mb-6">
+          <div class="flex items-center gap-2 text-xs font-semibold text-emerald-600 uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Section 3 of 5
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mt-1">Problem-Solving Coping Behavioral Scale (10 Items)</h2>
+          <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+            Measures your habitual coping actions under crisis: <strong>Active Problem-Solving Traits (PS-01 to PS-05)</strong> vs. <strong>Maladaptive Evasive Traits (PS-06 to PS-10)</strong>. Select Rarely (0), Sometimes (1), or Frequently (2).
+          </p>
         </div>
+        <div id="coping-questions-container" class="space-y-4"></div>
+      </section>
+
+      <!-- Section IV: 10-Item Self-Esteem & Innate Self-Alignment Scale -->
+      <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="border-b border-slate-100 pb-4 mb-6">
+          <div class="flex items-center gap-2 text-xs font-semibold text-amber-600 uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Section 4 of 5
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mt-1">Self-Esteem &amp; Innate Self-Alignment Scale (10 Items)</h2>
+          <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+            Evaluates the structural gap between your <strong>Innate Self-Acceptance (SE-01 to SE-05)</strong> and your acquired <strong>Social Mask / Other-Reward Script (SE-06 to SE-10)</strong>. Select Rarely (0), Sometimes (1), or Frequently (2).
+          </p>
+        </div>
+        <div id="selfesteem-questions-container" class="space-y-4"></div>
+      </section>
+
+      <!-- Section V: 10-Item Depressive Symptomatology Scale (D-Trait) -->
+      <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+        <div class="border-b border-slate-100 pb-4 mb-6">
+          <div class="flex items-center gap-2 text-xs font-semibold text-rose-600 uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span> Section 5 of 5
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mt-1">Depressive Symptomatology Scale — D-Trait (10 Items)</h2>
+          <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+            Direct assessment of affective, vegetative, and cognitive depressive symptoms experienced over the past two weeks. Select <strong>Rarely (0)</strong>, <strong>Sometimes (1)</strong>, or <strong>Frequently (2)</strong>.
+          </p>
+        </div>
+        <div id="depression-questions-container" class="space-y-4"></div>
       </section>
 
       <!-- Navigation & Action bar -->
@@ -301,10 +336,10 @@
         </button>
 
         <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
-          <span id="answered-counter" class="text-xs font-mono text-slate-500">0/40 Answered</span>
+          <span id="answered-counter" class="text-xs font-mono text-slate-500">0/70 Answered</span>
           <button type="button" id="submit-assessment-btn" onclick="calculateAndShowReport()" 
                   class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-semibold text-sm shadow-md shadow-sky-600/20 transition flex items-center justify-center gap-2">
-            <span>Score &amp; Generate Diagnostic Report</span>
+            <span>Score Full 5-Scale Battery</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
@@ -320,7 +355,7 @@
       <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl p-5 sm:p-6 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
         <div>
           <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-medium mb-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Scoring Complete
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Full 5-Scale Scoring Complete
           </div>
           <h2 class="text-lg sm:text-xl font-bold">Psychometric Assessment Report Ready</h2>
           <p class="text-xs sm:text-sm text-slate-300 mt-0.5">
@@ -329,7 +364,6 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
-          <!-- Primary Send Button -->
           <button type="button" id="trigger-email-btn" onclick="openEmailDispatcherModal()"
                   class="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-semibold text-xs shadow-md shadow-sky-500/30 transition flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,7 +372,6 @@
             <span>Email Report</span>
           </button>
 
-          <!-- Print / PDF Button -->
           <button type="button" onclick="window.print()"
                   class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium text-xs transition flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -347,7 +380,6 @@
             <span>Print / Save PDF</span>
           </button>
 
-          <!-- Copy Raw Text Summary -->
           <button type="button" onclick="copyReportToClipboard()"
                   class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium text-xs transition" title="Copy Text Summary">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -355,7 +387,6 @@
             </svg>
           </button>
 
-          <!-- Modify Answers -->
           <button type="button" onclick="goToStep(2)"
                   class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-medium text-xs transition" title="Edit Responses">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -365,19 +396,19 @@
         </div>
       </div>
 
-      <!-- Printable Document Wrapper -->
+      <!-- Printable Document Wrapper (4-Page Compatible) -->
       <div id="printable-report" class="space-y-6">
         
-        <!-- Clinical Header Card -->
+        <!-- PAGE 1 BLOCK: Clinical Header & Intake Grid -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm report-card">
           <div class="flex flex-col md:flex-row md:items-start justify-between pb-6 border-b border-slate-100 gap-4">
             <div>
               <div class="text-[11px] font-mono tracking-widest text-slate-400 uppercase">SAT Psychometric Evaluation Instrument</div>
               <h1 class="text-2xl font-black text-slate-900 mt-0.5">Clinical Psychological Diagnostic Report</h1>
-              <p class="text-xs text-slate-500 mt-1">Structured Association Technique (Tsunetsugu Munakata, University of Tsukuba)</p>
+              <p class="text-xs text-slate-500 mt-1">Structured Association Technique • Tsunetsugu Munakata, Ph.D. (University of Tsukuba)</p>
             </div>
             <div class="text-right flex flex-col md:items-end justify-center">
-              <span id="report-timestamp" class="text-xs font-mono text-slate-500">2026-10-07 18:13</span>
+              <span id="report-timestamp" class="text-xs font-mono text-slate-500">2026-10-09</span>
               <span id="report-id-badge" class="mt-1 inline-block text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">
                 ID: SAT-84920
               </span>
@@ -396,7 +427,7 @@
             </div>
             <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
               <div class="text-slate-400 font-medium">Evaluation Date</div>
-              <div id="report-date" class="font-bold text-slate-800 text-sm mt-0.5">2026-10-07</div>
+              <div id="report-date" class="font-bold text-slate-800 text-sm mt-0.5">2026-10-09</div>
             </div>
             <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
               <div class="text-slate-400 font-medium">Recipient Destinations</div>
@@ -406,13 +437,10 @@
         </div>
 
         <!-- Executive Diagnostic Synthesis Banner -->
-        <div id="synthesis-card" class="rounded-2xl border p-6 shadow-sm report-card transition-all">
-          <!-- Dynamically populated synthesis -->
-        </div>
+        <div id="synthesis-card" class="rounded-2xl border p-6 shadow-sm report-card transition-all"></div>
 
-        <!-- Two Column Diagnostics: Radar Chart + Self-Repression Gauge -->
+        <!-- PAGE 2 BLOCK: Radar Chart + Self-Repression Gauge -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
           <!-- Radar Chart (Hexagon) -->
           <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm report-card flex flex-col">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
@@ -425,7 +453,7 @@
               </span>
             </div>
 
-            <div class="relative w-full max-w-[420px] mx-auto my-auto aspect-square p-2">
+            <div class="relative w-full max-w-[380px] mx-auto my-auto aspect-square p-2">
               <canvas id="temperamentRadarChart"></canvas>
             </div>
 
@@ -456,7 +484,6 @@
                 <span id="repression-badge" class="text-xs font-bold px-2.5 py-0.5 rounded-full">--</span>
               </div>
 
-              <!-- Big Score Display -->
               <div class="my-6 text-center">
                 <div class="inline-flex items-baseline justify-center">
                   <span id="repression-score-big" class="text-5xl font-black tracking-tight text-slate-900">0</span>
@@ -475,7 +502,6 @@
                   <div class="h-full bg-amber-400" style="width: 20%" title="7-10 Moderate"></div>
                   <div class="h-full bg-rose-500" style="width: 50%" title="11-20 Severe"></div>
                 </div>
-                <!-- Needle Marker Indicator -->
                 <div class="relative w-full h-4">
                   <div id="repression-needle" class="absolute top-0 -ml-1.5 transition-all duration-500 text-slate-900" style="left: 0%">
                     <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
@@ -492,7 +518,6 @@
               </div>
             </div>
 
-            <!-- Behavioral Script Summary -->
             <div id="repression-card-footer" class="mt-6 pt-4 border-t border-slate-100 text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-100">
               <span class="font-bold text-slate-800">Behavioral Drive Classification:</span>
               <span id="behavioral-drive-badge" class="ml-1 text-slate-700">Analyzing...</span>
@@ -500,67 +525,262 @@
           </div>
         </div>
 
-        <!-- Detailed Subscale Breakdown Table -->
+        <!-- PAGE 3 BLOCK: THE THREE SECONDARY SCALES (DEDICATED VISUAL SLOTS & TABLES) -->
+        
+        <!-- 1. Problem-Solving Coping Behavioral Scale Slot -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm report-card space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Scale III</span>
+                <h3 class="text-base font-bold text-slate-900">Problem-Solving Coping Behavioral Scale</h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Active Problem-Solving Traits vs. Maladaptive Evasive Traits (0–20 Net Index)</p>
+            </div>
+            <div id="coping-tier-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-center">
+              Adaptive Coping
+            </div>
+          </div>
+
+          <!-- Dual Balance Graph & Metrics -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block">Active Coping (PS-ACT)</span>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span id="ps-act-score" class="text-2xl font-black text-slate-900">0</span>
+                  <span class="text-xs text-slate-400">/ 10 pts</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-1">Direct analysis, resource seeking, pacing, and assertive resolution.</p>
+              </div>
+              <div class="w-full bg-slate-200 h-2 rounded-full mt-3 overflow-hidden">
+                <div id="ps-act-bar" class="bg-emerald-500 h-2 rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-rose-700 uppercase tracking-wider block">Evasive Coping (PS-EVA)</span>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span id="ps-eva-score" class="text-2xl font-black text-slate-900">0</span>
+                  <span class="text-xs text-slate-400">/ 10 pts</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-1">Procrastination, cognitive numbing, circular rumination, resignation.</p>
+              </div>
+              <div class="w-full bg-slate-200 h-2 rounded-full mt-3 overflow-hidden">
+                <div id="ps-eva-bar" class="bg-rose-500 h-2 rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-emerald-900 uppercase tracking-wider block">Net Adaptive Coping Index</span>
+                <div class="flex items-baseline gap-1 mt-1">
+                  <span id="ps-net-score" class="text-3xl font-black text-emerald-900">0</span>
+                  <span class="text-xs text-emerald-700">/ 20</span>
+                </div>
+                <div id="ps-net-label" class="text-xs font-semibold text-emerald-800 mt-1">Evaluation...</div>
+              </div>
+              <div class="text-[10px] text-emerald-700/80 pt-2 border-t border-emerald-200/60 font-mono">
+                Formula: Active + (10 - Evasive)
+              </div>
+            </div>
+          </div>
+
+          <!-- Behavioral Interpretation Block -->
+          <div id="ps-interpretation-box" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- 2. Self-Esteem & Innate Self-Alignment Scale Slot -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm report-card space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Scale IV</span>
+                <h3 class="text-base font-bold text-slate-900">Self-Esteem &amp; Innate Self-Alignment Scale</h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Structural Gap: "Other-Reward / Social Mask" vs. "Innate Self-Acceptance"</p>
+            </div>
+            <div id="se-alignment-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800 self-start sm:self-center">
+              Evaluating Alignment
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+            <!-- Radial / Big Percentage Meter -->
+            <div class="md:col-span-4 bg-slate-50 p-4 rounded-xl border border-slate-100 text-center flex flex-col items-center justify-center">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Self-Alignment Index</span>
+              <div class="my-2 relative flex items-center justify-center">
+                <span id="se-index-percent" class="text-5xl font-black text-slate-900 font-mono">0%</span>
+              </div>
+              <span id="se-cohesion-title" class="text-xs font-bold text-slate-700">Evaluating Integration</span>
+              <span class="text-[10px] text-slate-400 font-mono mt-1">Cutoff: &ge; 80% Healthy Alignment</span>
+            </div>
+
+            <!-- Gap Breakdown Columns -->
+            <div class="md:col-span-8 space-y-3 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-slate-800 block">Innate Self-Acceptance (SE-INN)</span>
+                  <span class="text-[11px] text-slate-500">Unconditional self-worth, emotional dignity &amp; self-care</span>
+                </div>
+                <div class="text-right">
+                  <span id="se-inn-score" class="font-mono font-bold text-slate-900 text-base">0</span>
+                  <span class="text-[11px] text-slate-400 font-mono">/ 10</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-slate-800 block">Social Mask / Other-Reward Script (SE-MSK)</span>
+                  <span class="text-[11px] text-slate-500">Heteronomous compliance, perfectionist display &amp; imposter fear</span>
+                </div>
+                <div class="text-right">
+                  <span id="se-msk-score" class="font-mono font-bold text-slate-900 text-base">0</span>
+                  <span class="text-[11px] text-slate-400 font-mono">/ 10</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-amber-900 block">Structural Mask-to-Self Gap (&Delta; Gap)</span>
+                  <span class="text-[11px] text-amber-700">Calculates disparity between outer social compliance and inner self</span>
+                </div>
+                <span id="se-gap-score" class="font-mono font-bold text-amber-950 text-base">+0 pts</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="se-interpretation-box" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- 3. Direct Depressive Symptomatology Scale (D-Trait) Slot -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm report-card space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">Scale V</span>
+                <h3 class="text-base font-bold text-slate-900">Depressive Symptomatology Scale (D-Trait)</h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Direct Clinical Symptom Status — Affective, Vegetative, Cognitive &amp; Existential (0–20)</p>
+            </div>
+            <div id="depression-tier-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 self-start sm:self-center">
+              Low Risk
+            </div>
+          </div>
+
+          <!-- Score & Cluster Severity Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center flex flex-col justify-center items-center">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">D-Trait Raw Score</span>
+              <div class="flex items-baseline justify-center gap-1 my-1">
+                <span id="depression-raw-score" class="text-4xl font-black text-slate-900 font-mono">0</span>
+                <span class="text-sm font-bold text-slate-400">/ 20</span>
+              </div>
+              <span id="depression-severity-title" class="text-xs font-bold text-slate-700">Low Risk</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1">
+              <span class="font-bold text-slate-800 block">Affective Cluster</span>
+              <span id="d-cluster-aff" class="text-slate-500 block text-[11px]">Dysphoria &amp; Anhedonia: 0/4</span>
+              <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden mt-2">
+                <div id="d-bar-aff" class="bg-rose-500 h-1.5 rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1">
+              <span class="font-bold text-slate-800 block">Cognitive Cluster</span>
+              <span id="d-cluster-cog" class="text-slate-500 block text-[11px]">Guilt, Indecision &amp; Bleak Outlook: 0/6</span>
+              <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden mt-2">
+                <div id="d-bar-cog" class="bg-rose-500 h-1.5 rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs space-y-1">
+              <span class="font-bold text-slate-800 block">Vegetative Cluster</span>
+              <span id="d-cluster-veg" class="text-slate-500 block text-[11px]">Fatigue, Insomnia &amp; Somatic: 0/6</span>
+              <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden mt-2">
+                <div id="d-bar-veg" class="bg-rose-500 h-1.5 rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert banner if passive death wish (D-10) is endorsed -->
+          <div id="depression-crisis-alert" class="hidden p-3.5 rounded-xl bg-rose-100 border border-rose-300 text-rose-900 text-xs flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-rose-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <div>
+              <strong>Clinical Escalation Indicator:</strong> Passive death wish or existential defeat endorsed (Item D-10). Immediate clinical inquiry into safety and support resources is advised.
+            </div>
+          </div>
+
+          <div id="depression-interpretation-box" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Comprehensive 5-Scale Score Matrix Table -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm report-card">
-          <h3 class="text-base font-bold text-slate-900 mb-1">Psychometric Score Matrix &amp; Latent Constructs</h3>
-          <p class="text-xs text-slate-500 mb-4">Complete item endorsement tallies, threshold assignments, and clinical implications.</p>
+          <h3 class="text-base font-bold text-slate-900 mb-1">Comprehensive Psychometric Score Matrix (All 5 Scales)</h3>
+          <p class="text-xs text-slate-500 mb-4">Complete raw tallies, standardized threshold assignments, and clinical interpretations.</p>
 
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
               <thead class="bg-slate-50 text-slate-600 font-semibold border-y border-slate-200">
                 <tr>
-                  <th class="py-2.5 px-3">Construct Dimension</th>
-                  <th class="py-2.5 px-3">Domain Category</th>
+                  <th class="py-2.5 px-3">Battery Scale &amp; Code</th>
+                  <th class="py-2.5 px-3">Construct Layer</th>
                   <th class="py-2.5 px-3 text-center">Raw Score</th>
                   <th class="py-2.5 px-3 text-center">Diagnostic Tier</th>
                   <th class="py-2.5 px-3">Psychological Manifestation</th>
                 </tr>
               </thead>
               <tbody id="scores-table-body" class="divide-y divide-slate-100 text-slate-700">
-                <!-- Dynamically populated via JS -->
+                <!-- Dynamically populated via JS for all 5 scales -->
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- Second-Order Interactions & Psychosomatic Vulnerability Analysis -->
+        <!-- PAGE 4 BLOCK: Second-Order Interactions & Interventions -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm report-card space-y-6">
           <div class="border-b border-slate-100 pb-3">
-            <h3 class="text-base font-bold text-slate-900">Second-Order Biological &amp; Behavioral Interaction Dynamics</h3>
+            <h3 class="text-base font-bold text-slate-900">Compound Biopsychosocial Interaction Dynamics</h3>
             <p class="text-xs text-slate-500 mt-0.5">
-              Munakata's biopsychosocial architecture evaluates the synthesis of immutable neurogenetic temperament with acquired self-repression scripts.
+              Intersection of immutable biological temperaments with acquired coping scripts, self-alignment gaps, and depressive symptoms.
             </p>
           </div>
 
-          <div id="interaction-dynamics-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <!-- Dynamically populated dynamic cards -->
-          </div>
+          <div id="interaction-dynamics-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
 
-          <!-- Actionable Clinical Recommendations -->
+          <!-- Targeted SAT Interventions -->
           <div class="mt-6 pt-5 border-t border-slate-100">
             <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Targeted Therapeutic Formulations (SAT Framework)</h4>
-            <div id="therapeutic-recommendations" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700">
-              <!-- Dynamically populated suggestions -->
-            </div>
+            <div id="therapeutic-recommendations" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700"></div>
           </div>
         </div>
 
-        <!-- Academic Provenance and Citations -->
+        <!-- Academic Provenance -->
         <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 text-xs text-slate-500 space-y-2 report-card">
           <div class="font-bold text-slate-700 flex items-center gap-1.5">
             <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
-            Psychometric Architecture &amp; Citations
+            Academic Provenance &amp; Citations
           </div>
           <p class="leading-relaxed">
-            Formulated by Tsunetsugu Munakata, Ph.D. (Graduate School of Comprehensive Human Sciences, University of Tsukuba). Validated by the Academy for Health Counseling and published in <em>PLOS ONE</em> (Hashizume et al., 2025; DOI: 10.1371/journal.pone.0319647) and <em>International Journal of Structured Association Technique</em> (Tanaka &amp; Munakata, 2008; 2:36–62).
+            Formulated by Tsunetsugu Munakata, Ph.D. (Graduate School of Comprehensive Human Sciences, University of Tsukuba). Validated by the Academy for Health Counseling and published in <em>PLOS ONE</em> (Hashizume et al., 2025; DOI: 10.1371/journal.pone.0319647) and <em>International Journal of Structured Association Technique</em> (Tanaka &amp; Munakata, 2008; Ueda &amp; Munakata, 2014).
           </p>
         </div>
 
-      </div> <!-- End Printable Report -->
+      </div>
 
-      <!-- Action Footer at Bottom of Report -->
+      <!-- Action Footer -->
       <div class="flex items-center justify-between pt-4 no-print">
         <button type="button" onclick="goToStep(2)" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-sm font-medium transition">
           &larr; Review Item Answers
@@ -579,8 +799,7 @@
 
   <!-- Modal: Email Dispatcher Dialog -->
   <div id="email-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 sm:p-7 space-y-5 animate-in fade-in zoom-in-95 duration-200">
-      
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 sm:p-7 space-y-5">
       <div class="flex items-start justify-between">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center">
@@ -605,12 +824,9 @@
         <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
           Recipient List (<span id="modal-recipient-count">0</span> email addresses)
         </label>
-        <div id="modal-recipients-pills" class="flex flex-wrap gap-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200 max-h-24 overflow-y-auto">
-          <!-- Populated by JS -->
-        </div>
+        <div id="modal-recipients-pills" class="flex flex-wrap gap-1.5 p-3 rounded-xl bg-slate-50 border border-slate-200 max-h-24 overflow-y-auto"></div>
       </div>
 
-      <!-- Quick Add extra recipient inside modal -->
       <div class="flex gap-2">
         <input type="email" id="modal-add-email-input" placeholder="Add another email destination..." 
                class="flex-grow px-3 py-2 text-xs rounded-xl border border-slate-300 focus:outline-none focus:border-sky-500">
@@ -623,16 +839,13 @@
       <div class="space-y-3 pt-2 border-t border-slate-100">
         <div class="text-xs font-bold text-slate-800">Select Delivery Method:</div>
         
-        <!-- Method 1: Client mailto link -->
         <div class="p-3.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-white hover:bg-sky-50/50 transition cursor-pointer flex items-center justify-between"
              onclick="dispatchViaMailto()">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center font-bold text-sm">
-              @
-            </div>
+            <div class="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center font-bold text-sm">@</div>
             <div>
               <div class="text-xs font-bold text-slate-900">Launch Default Mail Client (Recommended)</div>
-              <div class="text-[11px] text-slate-500">Opens Apple Mail, Outlook, or Gmail with pre-filled report &amp; all recipients</div>
+              <div class="text-[11px] text-slate-500">Opens Apple Mail, Outlook, or Gmail with complete 5-scale report</div>
             </div>
           </div>
           <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -640,7 +853,6 @@
           </svg>
         </div>
 
-        <!-- Method 2: Instant Clipboard Copy for Email -->
         <div class="p-3.5 rounded-xl border border-slate-200 hover:border-indigo-400 bg-white hover:bg-indigo-50/50 transition cursor-pointer flex items-center justify-between"
              onclick="copyReportToClipboard()">
           <div class="flex items-center gap-3">
@@ -651,7 +863,7 @@
             </div>
             <div>
               <div class="text-xs font-bold text-slate-900">Copy Formatted Report to Clipboard</div>
-              <div class="text-[11px] text-slate-500">Paste directly into your custom clinic webmail or electronic record</div>
+              <div class="text-[11px] text-slate-500">Paste directly into your custom clinic webmail or electronic health record</div>
             </div>
           </div>
           <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -659,30 +871,28 @@
           </svg>
         </div>
 
-        <!-- Method 3: Webhook / API Dispatcher (EmailJS / Zapier / Backend) -->
         <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 transition">
           <div class="flex items-center justify-between mb-2">
             <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
               </svg>
-              Direct Webhook / API Service Dispatch
+              Direct Webhook / API Dispatcher
             </div>
-            <span class="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600">JSON Endpoint</span>
+            <span class="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600">JSON API</span>
           </div>
           <p class="text-[11px] text-slate-500 mb-2">
-            Optionally dispatch the raw JSON scoring payload directly to your clinic's HTTP webhook (e.g. EmailJS, Zapier, Google Apps Script).
+            Dispatch full 5-scale JSON scoring payload directly to your clinic's HTTP webhook.
           </p>
           <div class="flex gap-2">
             <input type="url" id="webhook-endpoint-input" placeholder="https://api.yourclinic.org/mail-webhook"
                    class="flex-grow px-3 py-1.5 text-xs rounded-lg border border-slate-300 focus:outline-none focus:border-sky-500">
             <button type="button" onclick="sendViaWebhook()"
                     class="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-semibold transition">
-              Dispatch API
+              Dispatch
             </button>
           </div>
         </div>
-
       </div>
 
       <div class="flex justify-end pt-2">
@@ -690,15 +900,12 @@
           Close Window
         </button>
       </div>
-
     </div>
   </div>
 
-  <!-- Modal: Psychometric Validation Suite & Diagnostic Verification Runner -->
+  <!-- Modal: Psychometric Validation Suite Modal (Expanded for all 5 scales) -->
   <div id="validation-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-      
-      <!-- Modal Header -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden">
       <div class="p-5 sm:p-6 border-b border-slate-200 bg-slate-50 flex items-start justify-between">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-mono font-bold text-base shadow-sm">
@@ -706,13 +913,13 @@
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-lg font-bold text-slate-900">Psychometric Scoring Validation Suite</h3>
+              <h3 class="text-lg font-bold text-slate-900">Psychometric Scoring Validation Suite (Full Battery)</h3>
               <span id="validation-overall-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-200 text-slate-700">
                 Idle
               </span>
             </div>
             <p class="text-xs text-slate-500">
-              Automated boundary testing, orthogonal scale integrity, and second-order interaction verification.
+              Automated testing across all 5 scales: Genetic, Self-Repression, Problem-Solving, Self-Alignment &amp; D-Trait.
             </p>
           </div>
         </div>
@@ -724,7 +931,6 @@
         </button>
       </div>
 
-      <!-- Test Execution Metrics Banner -->
       <div class="px-6 py-4 bg-white border-b border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
         <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
           <span class="text-slate-400 text-[11px] block font-medium">Total Asserts</span>
@@ -744,57 +950,19 @@
         </div>
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="px-6 py-2.5 bg-slate-50/70 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-        <div class="flex items-center gap-1.5" id="val-filter-buttons">
-          <button type="button" onclick="filterValidationCategory('ALL')" class="val-filter-btn px-2.5 py-1 rounded-lg font-semibold bg-slate-800 text-white transition text-[11px]" data-category="ALL">
-            All Tests (<span id="val-count-all">0</span>)
-          </button>
-          <button type="button" onclick="filterValidationCategory('BVA')" class="val-filter-btn px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-200 transition text-[11px]" data-category="BVA">
-            Boundary Values (<span id="val-count-bva">0</span>)
-          </button>
-          <button type="button" onclick="filterValidationCategory('INT')" class="val-filter-btn px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-200 transition text-[11px]" data-category="INT">
-            Interaction Dynamics (<span id="val-count-int">0</span>)
-          </button>
-          <button type="button" onclick="filterValidationCategory('ISO')" class="val-filter-btn px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-200 transition text-[11px]" data-category="ISO">
-            Isolation &amp; Mapping (<span id="val-count-iso">0</span>)
-          </button>
-        </div>
+      <div id="validation-test-list" class="flex-grow overflow-y-auto p-5 sm:p-6 space-y-2.5 bg-slate-50/40 text-xs"></div>
 
-        <div class="text-[11px] text-slate-500 font-mono flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Zero-loss state preservation active</span>
-        </div>
-      </div>
-
-      <!-- Test Cases Scrollable Output Log -->
-      <div id="validation-test-list" class="flex-grow overflow-y-auto p-5 sm:p-6 space-y-2.5 bg-slate-50/40 text-xs">
-        <!-- Populated dynamically with assertion cards -->
-      </div>
-
-      <!-- Modal Footer Actions -->
       <div class="p-4 sm:p-5 bg-white border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-        <p class="text-slate-500 text-[11px]">
-          Tests execute directly against client-side math methods without clearing active test-taker answers.
-        </p>
-
+        <p class="text-slate-500 text-[11px]">Zero-loss sandbox: Tests run without clearing user input.</p>
         <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-          <button type="button" onclick="copyValidationAuditLog()" class="px-3.5 py-2 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium transition flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
-            </svg>
-            <span>Copy Audit Log</span>
+          <button type="button" onclick="copyValidationAuditLog()" class="px-3.5 py-2 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium transition">
+            Copy Audit Log
           </button>
-
-          <button type="button" onclick="runAutomatedValidationSuite()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold transition flex items-center gap-1.5 shadow-sm shadow-emerald-600/20">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-            </svg>
-            <span>Re-run Validation Suite</span>
+          <button type="button" onclick="runAutomatedValidationSuite()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold transition">
+            Re-run Validation Suite
           </button>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -811,6 +979,7 @@
   </div>
 
   <script>
+    // 1. GENETIC TEMPERAMENT SUBSCALES (30 items)
     const GENETIC_SUBSCALES = [
       {
         id: 'G-CYC',
@@ -904,6 +1073,7 @@
       }
     ];
 
+    // 2. SELF-REPRESSION BEHAVIORAL SCALE (10 items)
     const REPRESSION_ITEMS = [
       { code: "SR-01", construct: "Emotional Suppression", text: "I deliberately hide my true feelings (such as irritation, distress, or sadness) to avoid upsetting others." },
       { code: "SR-02", construct: "Somatic Suppression", text: "Even when I am physically exhausted or feeling unwell, I force myself to continue working without complaint." },
@@ -917,6 +1087,48 @@
       { code: "SR-10", construct: "External Expectation Dominance", text: "My daily decisions are primarily driven by meeting the expectations of others rather than realizing my own goals." }
     ];
 
+    // 3. PROBLEM-SOLVING COPING BEHAVIORAL SCALE (10 items: 5 Active, 5 Evasive)
+    const COPING_ITEMS = [
+      { code: "PS-01", type: "ACTIVE", construct: "Proactive Confrontation", text: "When confronted with a problem, I immediately analyze the cause and formulate concrete steps to solve it." },
+      { code: "PS-02", type: "ACTIVE", construct: "Resource Activation", text: "I actively seek out reliable advice, information, or external support when a challenge exceeds my current capabilities." },
+      { code: "PS-03", type: "ACTIVE", construct: "Pacing & Prioritization", text: "I break down overwhelming obligations into manageable segments and prioritize what must be done first." },
+      { code: "PS-04", type: "ACTIVE", construct: "Cognitive Reframing", text: "I view difficult challenges as opportunities for personal growth and adjust my approach when things do not work out." },
+      { code: "PS-05", type: "ACTIVE", construct: "Assertive Direct Action", text: "I take decisive action to resolve conflicts or misunderstandings directly rather than waiting for them to disappear." },
+      { code: "PS-06", type: "EVASIVE", construct: "Procrastination / Postponement", text: "When faced with complicated tasks or unpleasant decisions, I repeatedly postpone dealing with them." },
+      { code: "PS-07", type: "EVASIVE", construct: "Cognitive Numbing / Escape", text: "I attempt to forget or escape from pressing problems through temporary distractions, overeating, or excessive sleep." },
+      { code: "PS-08", type: "EVASIVE", construct: "Helpless Passivity", text: "I feel paralyzed and give up before trying because I assume any action I take will end in failure." },
+      { code: "PS-09", type: "EVASIVE", construct: "External Blame / Denial", text: "I avoid taking responsibility for interpersonal tensions, wishing other people would simply change their behavior." },
+      { code: "PS-10", type: "EVASIVE", construct: "Circular Rumination", text: "I trap myself in circular negative thoughts about worst-case outcomes rather than taking constructive action." }
+    ];
+
+    // 4. SELF-ESTEEM & INNATE SELF-ALIGNMENT SCALE (10 items: 5 Innate Self, 5 Social Mask)
+    const SELFESTEEM_ITEMS = [
+      { code: "SE-01", type: "INNATE", construct: "Inherent Dignity", text: "I feel genuine worth in simply being myself, regardless of whether I am achieving high status or praise." },
+      { code: "SE-02", type: "INNATE", construct: "Compassionate Self-Acceptance", text: "I can compassionately accept my personal flaws and mistakes without falling into deep self-rejection." },
+      { code: "SE-03", type: "INNATE", construct: "Authentic Disclosure", text: "I feel comfortable expressing my true feelings and authentic preferences in front of people close to me." },
+      { code: "SE-04", type: "INNATE", construct: "Somatic Boundary Respect", text: "I respect my own physical and emotional boundaries even if others urge me to overextend myself." },
+      { code: "SE-05", type: "INNATE", construct: "Unconditional Dignity", text: "I believe that my life has fundamental, unconditional dignity that does not depend on pleasing others." },
+      { code: "SE-06", type: "MASK", construct: "Approval Dependency", text: "I feel completely worthless and anxious if I am not continuously receiving approval and compliments from others." },
+      { code: "SE-07", type: "MASK", construct: "Rigid Public Persona", text: "I maintain a rigid 'ideal persona' in public because I am terrified that people will reject the real me." },
+      { code: "SE-08", type: "MASK", construct: "Internalized Hyper-Criticism", text: "I constantly judge myself through the harsh, critical eyes of authority figures or past expectations." },
+      { code: "SE-09", type: "MASK", construct: "Performance Contingency", text: "I only feel proud of myself when I outperform competitors or meet impossible expectations." },
+      { code: "SE-10", type: "MASK", construct: "Imposter Alienation", text: "I feel like a fraud who is constantly wearing a mask to hide inner emptiness and inadequacy." }
+    ];
+
+    // 5. DEPRESSIVE SYMPTOMATOLOGY SCALE (D-TRAIT, 10 items)
+    const DEPRESSION_ITEMS = [
+      { code: "D-01", cluster: "Affective", text: "I feel a pervasive sense of gloom, sadness, or inner emptiness that is difficult to shake off." },
+      { code: "D-02", cluster: "Affective", text: "Activities and hobbies that once brought me pleasure now feel dull and unrewarding." },
+      { code: "D-03", cluster: "Vegetative", text: "I experience persistent physical sluggishness and fatigue even after resting or sleeping." },
+      { code: "D-04", cluster: "Vegetative", text: "I struggle with insomnia, early morning awakening, or unrefreshing fragmented sleep." },
+      { code: "D-05", cluster: "Cognitive", text: "My ability to concentrate, read, or make simple daily decisions is noticeably impaired." },
+      { code: "D-06", cluster: "Cognitive", text: "I am plagued by feelings of worthlessness, uselessness, and excessive self-blame." },
+      { code: "D-07", cluster: "Cognitive", text: "I look toward the future with pessimism, feeling that circumstances will never improve." },
+      { code: "D-08", cluster: "Existential", text: "I feel detached from friends and family and instinctively pull away from social interaction." },
+      { code: "D-09", cluster: "Vegetative", text: "I suffer from unexplained appetite loss, gastrointestinal discomfort, or heavy chest tightness." },
+      { code: "D-10", cluster: "Existential", text: "I frequently feel that life is meaningless and find myself thinking that it would be easier not to wake up." }
+    ];
+
     const state = {
       participantName: '',
       evaluationDate: new Date().toISOString().split('T')[0],
@@ -925,11 +1137,17 @@
       recipientEmails: [],
       geneticAnswers: {},
       repressionAnswers: {},
+      copingAnswers: {},
+      selfEsteemAnswers: {},
+      depressionAnswers: {},
       scores: {
         genetic: {},
         repressionTotal: 0,
         repressionTier: 'Healthy',
-        behavioralDrive: 'Self-Reward Dominant'
+        behavioralDrive: 'Self-Reward Dominant',
+        coping: { act: 0, eva: 0, net: 0, tier: 'Adaptive' },
+        selfEsteem: { inn: 0, msk: 0, gap: 0, alignmentPercent: 100, tier: 'Integrated Self' },
+        depression: { raw: 0, tier: 'Low Risk', aff: 0, cog: 0, veg: 0, hasCrisis: false }
       },
       reportId: 'SAT-' + Math.floor(10000 + Math.random() * 90000)
     };
@@ -939,12 +1157,7 @@
 
     function escapeHtml(str) {
       if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
     }
 
     function validateEmail(email) {
@@ -1036,7 +1249,6 @@
         }
         state.participantName = pName;
 
-        // Auto-capture pending email text if user typed without pressing Add
         const emailField = document.getElementById('email-input-field');
         if (emailField && emailField.value.trim()) {
           handleEmailAddition(emailField.value.trim());
@@ -1056,13 +1268,6 @@
 
         const notes = document.getElementById('clinical-notes');
         if (notes) state.clinicalNotes = notes.value.trim();
-      }
-
-      if (targetStep === 3) {
-        if (!state.scores.repressionTotal && Object.keys(state.scores.genetic).length === 0) {
-          calculateAndShowReport();
-          return;
-        }
       }
 
       currentStep = targetStep;
@@ -1090,10 +1295,10 @@
 
       if (step === 1) {
         if (stepLabel) stepLabel.textContent = 'Step 1 of 3: Test Taker & Recipient Info';
-        if (progressBar) progressBar.style.width = '15%';
-        if (progressPercent) progressPercent.textContent = '15% Completed';
+        if (progressBar) progressBar.style.width = '10%';
+        if (progressPercent) progressPercent.textContent = '10% Completed';
       } else if (step === 2) {
-        if (stepLabel) stepLabel.textContent = 'Step 2 of 3: Assessment Battery (40 Items)';
+        if (stepLabel) stepLabel.textContent = 'Step 2 of 3: Full 5-Scale Battery (70 Items)';
         updateAnsweredStats();
       } else if (step === 3) {
         if (stepLabel) stepLabel.textContent = 'Step 3 of 3: Diagnostic Report & Interpretive Synthesis';
@@ -1121,6 +1326,7 @@
       applyTabStyle(tab3, step === 3, false);
     }
 
+    // Render Question Sections
     function renderGeneticQuestions() {
       const container = document.getElementById('genetic-questions-container');
       if (!container) return;
@@ -1151,20 +1357,18 @@
                     <span class="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">${item.text}</span>
                   </div>
                   <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                    <label class="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${isYes ? 'bg-sky-50 border-sky-500 text-sky-700 ring-1 ring-sky-500/20' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}">
-                      <input type="radio" name="genetic_item_${item.num}" value="1" ${isYes ? 'checked' : ''} onchange="setGeneticAnswer(${item.num}, this.value)" class="sr-only">
+                    <button type="button" onclick="setGeneticAnswer(${item.num}, 1)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${isYes ? 'bg-sky-50 border-sky-500 text-sky-700 ring-1 ring-sky-500/20' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}">
                       <span class="w-3.5 h-3.5 rounded-full border flex items-center justify-center ${isYes ? 'border-sky-600 bg-sky-600' : 'border-slate-300 bg-white'}">
                         ${isYes ? '<span class="w-1.5 h-1.5 rounded-full bg-white"></span>' : ''}
                       </span>
                       <span>YES (1)</span>
-                    </label>
-                    <label class="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${isNo ? 'bg-slate-100 border-slate-400 text-slate-800 ring-1 ring-slate-400/20' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}">
-                      <input type="radio" name="genetic_item_${item.num}" value="0" ${isNo ? 'checked' : ''} onchange="setGeneticAnswer(${item.num}, this.value)" class="sr-only">
+                    </button>
+                    <button type="button" onclick="setGeneticAnswer(${item.num}, 0)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${isNo ? 'bg-slate-100 border-slate-400 text-slate-800 ring-1 ring-slate-400/20' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}">
                       <span class="w-3.5 h-3.5 rounded-full border flex items-center justify-center ${isNo ? 'border-slate-600 bg-slate-600' : 'border-slate-300 bg-white'}">
                         ${isNo ? '<span class="w-1.5 h-1.5 rounded-full bg-white"></span>' : ''}
                       </span>
                       <span>NO (0)</span>
-                    </label>
+                    </button>
                   </div>
                 </div>
               `;
@@ -1180,18 +1384,18 @@
       updateAnsweredStats();
     }
 
-    function renderRepressionQuestions() {
-      const container = document.getElementById('repression-questions-container');
+    function render3TierQuestions(containerId, items, stateKey, setterFnName, prefix) {
+      const container = document.getElementById(containerId);
       if (!container) return;
 
-      container.innerHTML = REPRESSION_ITEMS.map((item, idx) => {
-        const currentVal = state.repressionAnswers[item.code];
+      container.innerHTML = items.map((item, idx) => {
+        const currentVal = state[stateKey][item.code];
         return `
-          <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-indigo-300 transition flex flex-col md:flex-row md:items-center justify-between gap-3" data-repression-code="${item.code}">
+          <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-indigo-300 transition flex flex-col md:flex-row md:items-center justify-between gap-3" data-code="${item.code}">
             <div class="flex items-start gap-3">
               <span class="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-800 font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">${String(idx + 1).padStart(2, '0')}</span>
               <div>
-                <div class="text-[11px] font-mono font-semibold text-indigo-600 uppercase tracking-wider">${item.construct}</div>
+                <div class="text-[11px] font-mono font-semibold text-indigo-600 uppercase tracking-wider">${item.construct || item.cluster || item.type} (${item.code})</div>
                 <div class="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium mt-0.5">${item.text}</div>
               </div>
             </div>
@@ -1204,11 +1408,10 @@
               ].map(opt => {
                 const isSelected = currentVal === opt.val;
                 return `
-                  <label class="cursor-pointer flex flex-col items-center justify-center py-2 px-2 rounded-xl border text-center transition ${isSelected ? 'bg-indigo-50 border-indigo-600 text-indigo-900 ring-2 ring-indigo-500/20 shadow-xs' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'}">
-                    <input type="radio" name="repression_${item.code}" value="${opt.val}" ${isSelected ? 'checked' : ''} onchange="setRepressionAnswer('${item.code}', this.value)" class="sr-only">
+                  <button type="button" onclick="${setterFnName}('${item.code}', ${opt.val})" class="flex flex-col items-center justify-center py-2 px-2 rounded-xl border text-center transition ${isSelected ? 'bg-indigo-50 border-indigo-600 text-indigo-900 ring-2 ring-indigo-500/20 shadow-xs' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'}">
                     <span class="text-xs font-bold">${opt.label}</span>
                     <span class="text-[10px] text-slate-400 font-mono">${opt.val} pt</span>
-                  </label>
+                  </button>
                 `;
               }).join('')}
             </div>
@@ -1217,21 +1420,54 @@
       }).join('');
     }
 
+    function renderRepressionQuestions() {
+      render3TierQuestions('repression-questions-container', REPRESSION_ITEMS, 'repressionAnswers', 'setRepressionAnswer', 'SR');
+    }
     function setRepressionAnswer(code, val) {
       state.repressionAnswers[code] = parseInt(val, 10);
       renderRepressionQuestions();
       updateAnsweredStats();
     }
 
+    function renderCopingQuestions() {
+      render3TierQuestions('coping-questions-container', COPING_ITEMS, 'copingAnswers', 'setCopingAnswer', 'PS');
+    }
+    function setCopingAnswer(code, val) {
+      state.copingAnswers[code] = parseInt(val, 10);
+      renderCopingQuestions();
+      updateAnsweredStats();
+    }
+
+    function renderSelfEsteemQuestions() {
+      render3TierQuestions('selfesteem-questions-container', SELFESTEEM_ITEMS, 'selfEsteemAnswers', 'setSelfEsteemAnswer', 'SE');
+    }
+    function setSelfEsteemAnswer(code, val) {
+      state.selfEsteemAnswers[code] = parseInt(val, 10);
+      renderSelfEsteemQuestions();
+      updateAnsweredStats();
+    }
+
+    function renderDepressionQuestions() {
+      render3TierQuestions('depression-questions-container', DEPRESSION_ITEMS, 'depressionAnswers', 'setDepressionAnswer', 'D');
+    }
+    function setDepressionAnswer(code, val) {
+      state.depressionAnswers[code] = parseInt(val, 10);
+      renderDepressionQuestions();
+      updateAnsweredStats();
+    }
+
     function updateAnsweredStats() {
       const gCount = Object.keys(state.geneticAnswers).length;
       const rCount = Object.keys(state.repressionAnswers).length;
-      const totalAnswered = gCount + rCount;
+      const cCount = Object.keys(state.copingAnswers).length;
+      const sCount = Object.keys(state.selfEsteemAnswers).length;
+      const dCount = Object.keys(state.depressionAnswers).length;
+      const totalAnswered = gCount + rCount + cCount + sCount + dCount;
 
       const counterEl = document.getElementById('answered-counter');
       if (counterEl) {
-        counterEl.textContent = `${totalAnswered}/40 Answered`;
-        if (totalAnswered === 40) {
+        counterEl.textContent = `${totalAnswered}/70 Answered`;
+        if (totalAnswered === 70) {
           counterEl.className = 'text-xs font-mono font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
         } else {
           counterEl.className = 'text-xs font-mono text-slate-500';
@@ -1241,54 +1477,101 @@
       if (currentStep === 2) {
         const progressBar = document.getElementById('progress-bar-fill');
         const progressPercent = document.getElementById('progress-percent');
-        const pct = Math.round(15 + (totalAnswered / 40) * 80);
+        const pct = Math.round(10 + (totalAnswered / 70) * 85);
         if (progressBar) progressBar.style.width = `${pct}%`;
-        if (progressPercent) progressPercent.textContent = `${pct}% Completed (${totalAnswered}/40)`;
+        if (progressPercent) progressPercent.textContent = `${pct}% Completed (${totalAnswered}/70)`;
       }
+    }
+
+    // Mathematical Evaluators
+    function getGeneticTierPure(score) {
+      if (score >= 4) return 'Dominant';
+      if (score === 3) return 'Sub-Dominant';
+      return 'Non-Dominant';
+    }
+
+    function getRepressionTierPure(score) {
+      if (score >= 11) return 'Severe';
+      if (score >= 7) return 'Moderate';
+      return 'Healthy';
+    }
+
+    function getBehavioralDrivePure(score) {
+      if (score >= 11) return 'Other-Reward Dominant (他者報酬型)';
+      if (score >= 7) return 'Mixed / Context-Dependent';
+      return 'Self-Reward Dominant (自己報酬型)';
+    }
+
+    function getCopingTierPure(netScore) {
+      if (netScore >= 14) return 'Adaptive Coping';
+      if (netScore >= 8) return 'Balanced / Contextual';
+      return 'Maladaptive Evasive';
+    }
+
+    function getSelfAlignmentTierPure(percent) {
+      if (percent >= 80) return 'High Alignment (Integrated Self)';
+      if (percent >= 50) return 'Moderate (Conditional Self-Worth)';
+      return 'Severe Alienation (Social Mask Distortion)';
+    }
+
+    function getDepressionTierPure(score) {
+      if (score >= 14) return 'Severe Distress';
+      if (score >= 9) return 'Moderate Distress';
+      if (score >= 5) return 'Mild Distress';
+      return 'Low Risk';
     }
 
     function calculateAndShowReport() {
       const gCount = Object.keys(state.geneticAnswers).length;
       const rCount = Object.keys(state.repressionAnswers).length;
-      const totalAnswered = gCount + rCount;
+      const cCount = Object.keys(state.copingAnswers).length;
+      const sCount = Object.keys(state.selfEsteemAnswers).length;
+      const dCount = Object.keys(state.depressionAnswers).length;
+      const totalAnswered = gCount + rCount + cCount + sCount + dCount;
 
-      if (totalAnswered < 40) {
-        const missing = 40 - totalAnswered;
-        showToast(`Please answer all 40 items before scoring (${missing} unanswered).`, 'error');
+      if (totalAnswered < 70) {
+        const missing = 70 - totalAnswered;
+        showToast(`Please answer all 70 items before scoring (${missing} unanswered).`, 'error');
 
-        // Locate first missing question and scroll to it
+        // Locate first missing
         for (let i = 1; i <= 30; i++) {
           if (state.geneticAnswers[i] === undefined) {
-            const el = document.querySelector(`[data-item-num="${i}"]`);
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              el.classList.add('ring-2', 'ring-rose-500');
-              setTimeout(() => el.classList.remove('ring-2', 'ring-rose-500'), 2500);
-            }
+            scrollToMissing(`[data-item-num="${i}"]`);
             return;
           }
         }
         for (const item of REPRESSION_ITEMS) {
           if (state.repressionAnswers[item.code] === undefined) {
-            const el = document.querySelector(`[data-repression-code="${item.code}"]`);
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              el.classList.add('ring-2', 'ring-rose-500');
-              setTimeout(() => el.classList.remove('ring-2', 'ring-rose-500'), 2500);
-            }
+            scrollToMissing(`[data-code="${item.code}"]`);
+            return;
+          }
+        }
+        for (const item of COPING_ITEMS) {
+          if (state.copingAnswers[item.code] === undefined) {
+            scrollToMissing(`[data-code="${item.code}"]`);
+            return;
+          }
+        }
+        for (const item of SELFESTEEM_ITEMS) {
+          if (state.selfEsteemAnswers[item.code] === undefined) {
+            scrollToMissing(`[data-code="${item.code}"]`);
+            return;
+          }
+        }
+        for (const item of DEPRESSION_ITEMS) {
+          if (state.depressionAnswers[item.code] === undefined) {
+            scrollToMissing(`[data-code="${item.code}"]`);
             return;
           }
         }
         return;
       }
 
-      // Compute Genetic Subscale sums (0..5 each)
+      // 1. Genetic sums (0..5)
       state.scores.genetic = {};
       GENETIC_SUBSCALES.forEach(scale => {
         let sum = 0;
-        scale.items.forEach(it => {
-          sum += (state.geneticAnswers[it.num] || 0);
-        });
+        scale.items.forEach(it => { sum += (state.geneticAnswers[it.num] || 0); });
         state.scores.genetic[scale.id] = {
           id: scale.id,
           name: scale.name,
@@ -1300,18 +1583,81 @@
         };
       });
 
-      // Compute Self-Repression Sum (0..20)
+      // 2. Self-Repression Sum (0..20)
       let repSum = 0;
-      REPRESSION_ITEMS.forEach(it => {
-        repSum += (state.repressionAnswers[it.code] || 0);
-      });
+      REPRESSION_ITEMS.forEach(it => { repSum += (state.repressionAnswers[it.code] || 0); });
       state.scores.repressionTotal = repSum;
       state.scores.repressionTier = getRepressionTierPure(repSum);
       state.scores.behavioralDrive = getBehavioralDrivePure(repSum);
 
+      // 3. Problem-Solving Coping
+      let actSum = 0;
+      let evaSum = 0;
+      COPING_ITEMS.forEach(it => {
+        const val = state.copingAnswers[it.code] || 0;
+        if (it.type === 'ACTIVE') actSum += val;
+        else evaSum += val;
+      });
+      const netCoping = actSum + (10 - evaSum);
+      state.scores.coping = {
+        act: actSum,
+        eva: evaSum,
+        net: netCoping,
+        tier: getCopingTierPure(netCoping)
+      };
+
+      // 4. Self-Esteem & Innate Self-Alignment
+      let innSum = 0;
+      let mskSum = 0;
+      SELFESTEEM_ITEMS.forEach(it => {
+        const val = state.selfEsteemAnswers[it.code] || 0;
+        if (it.type === 'INNATE') innSum += val;
+        else mskSum += val;
+      });
+      const gap = mskSum - innSum;
+      const alignPct = Math.round(((innSum + (10 - mskSum)) / 20) * 100);
+      state.scores.selfEsteem = {
+        inn: innSum,
+        msk: mskSum,
+        gap: gap,
+        alignmentPercent: alignPct,
+        tier: getSelfAlignmentTierPure(alignPct)
+      };
+
+      // 5. Depressive Symptomatology
+      let dSum = 0;
+      let affSum = 0;
+      let cogSum = 0;
+      let vegSum = 0;
+      DEPRESSION_ITEMS.forEach(it => {
+        const val = state.depressionAnswers[it.code] || 0;
+        dSum += val;
+        if (it.cluster === 'Affective') affSum += val;
+        if (it.cluster === 'Cognitive') cogSum += val;
+        if (it.cluster === 'Vegetative') vegSum += val;
+      });
+      const hasCrisis = (state.depressionAnswers['D-10'] || 0) >= 1;
+      state.scores.depression = {
+        raw: dSum,
+        tier: getDepressionTierPure(dSum),
+        aff: affSum,
+        cog: cogSum,
+        veg: vegSum,
+        hasCrisis: hasCrisis
+      };
+
       renderDiagnosticReportUI();
       goToStep(3);
-      showToast('Scoring calculations completed successfully.', 'success');
+      showToast('Scoring calculations completed across all 5 scales.', 'success');
+    }
+
+    function scrollToMissing(selector) {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('ring-2', 'ring-rose-500');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-rose-500'), 2500);
+      }
     }
 
     function renderDiagnosticReportUI() {
@@ -1326,7 +1672,7 @@
       document.getElementById('report-emails-display').textContent = `${emailCount} address${emailCount > 1 ? 'es' : ''} (${state.recipientEmails.join(', ')})`;
       document.getElementById('report-recipients-count').textContent = `${emailCount} recipient${emailCount > 1 ? 'es' : ''}`;
 
-      // Self-Repression Meter & Badges
+      // Section II: Self-Repression UI
       const sr = state.scores.repressionTotal;
       const srTier = state.scores.repressionTier;
       const srBadge = document.getElementById('repression-badge');
@@ -1345,13 +1691,13 @@
         srBadge.textContent = 'Severe Self-Suppression (自己抑制傾向過度)';
         classTitle.textContent = 'Severe Emotional & Somatic Denial (Cutoff ≥ 11)';
         classTitle.className = 'text-sm font-bold text-rose-700 mt-1';
-        classDesc.textContent = 'Pathological inhibition of physical fatigue and emotional needs in pursuit of external praise. High vulnerability to neuroendocrine dysregulation and chronic pain.';
+        classDesc.textContent = 'Pathological inhibition of physical fatigue and authentic feelings to secure approval. High vulnerability to neuroendocrine collapse and chronic hyperalgesia.';
       } else if (srTier === 'Moderate') {
         srBadge.className = 'text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200';
         srBadge.textContent = 'Moderate Repression (中等度抑制)';
         classTitle.textContent = 'Inconsistent Boundary Setting (Score 7–10)';
         classTitle.className = 'text-sm font-bold text-amber-700 mt-1';
-        classDesc.textContent = 'Intermittent emotional suppression and self-sacrifice under heightened professional or relational pressures.';
+        classDesc.textContent = 'Situational suppression of fatigue and personal needs under heightened social or professional obligations.';
       } else {
         srBadge.className = 'text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200';
         srBadge.textContent = 'Low Repression / Healthy (自己表出度良好)';
@@ -1360,18 +1706,101 @@
         classDesc.textContent = 'Preserved interoceptive body awareness, authentic affective disclosure, and assertive relational boundaries.';
       }
 
-      // Second-Order Interactions
+      // Section III: Problem-Solving Coping UI
+      const cp = state.scores.coping;
+      document.getElementById('ps-act-score').textContent = cp.act;
+      document.getElementById('ps-eva-score').textContent = cp.eva;
+      document.getElementById('ps-net-score').textContent = cp.net;
+      document.getElementById('ps-act-bar').style.width = `${(cp.act / 10) * 100}%`;
+      document.getElementById('ps-eva-bar').style.width = `${(cp.eva / 10) * 100}%`;
+
+      const cpBadge = document.getElementById('coping-tier-badge');
+      const cpNetLabel = document.getElementById('ps-net-label');
+      const cpBox = document.getElementById('ps-interpretation-box');
+
+      cpBadge.textContent = cp.tier;
+      if (cp.tier === 'Adaptive Coping') {
+        cpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200';
+        cpNetLabel.textContent = 'Proactive & Resilient Problem Tackling';
+        cpBox.innerHTML = `<strong>Adaptive Coping Pattern:</strong> Test taker exhibits robust analytical planning, active advice seeking, and assertive boundary setting under stress. Evasive passivity is minimal, fostering rapid recovery from acute crises.`;
+      } else if (cp.tier === 'Balanced / Contextual') {
+        cpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200';
+        cpNetLabel.textContent = 'Intermittent Coping Efficacy';
+        cpBox.innerHTML = `<strong>Balanced Coping Pattern:</strong> Participant deploys proactive problem-solving for familiar demands, but slips into avoidance, cognitive numbing, or circular rumination when environmental pressure escalates.`;
+      } else {
+        cpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-200';
+        cpNetLabel.textContent = 'Evasive Procrastination & Helplessness';
+        cpBox.innerHTML = `<strong>Maladaptive Evasive Pattern:</strong> Evasive tendencies (postponement, numbing, circular rumination: ${cp.eva}/10) severely outstrip active confrontation (${cp.act}/10). Stressors remain unresolved and compound neuroendocrine strain.`;
+      }
+
+      // Section IV: Self-Esteem & Self-Alignment UI
+      const se = state.scores.selfEsteem;
+      document.getElementById('se-index-percent').textContent = `${se.alignmentPercent}%`;
+      document.getElementById('se-inn-score').textContent = se.inn;
+      document.getElementById('se-msk-score').textContent = se.msk;
+      document.getElementById('se-gap-score').textContent = `${se.gap >= 0 ? '+' : ''}${se.gap} pts`;
+
+      const seBadge = document.getElementById('se-alignment-badge');
+      const seTitle = document.getElementById('se-cohesion-title');
+      const seBox = document.getElementById('se-interpretation-box');
+
+      seBadge.textContent = se.tier;
+      seTitle.textContent = se.tier;
+
+      if (se.alignmentPercent >= 80) {
+        seBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200';
+        seBox.innerHTML = `<strong>Integrated Self-Acceptance:</strong> Unconditional personal worth (${se.inn}/10) is anchored internally. Minimal social mask disparity indicates authentic self-expression with negligible other-reward dependence.`;
+      } else if (se.alignmentPercent >= 50) {
+        seBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200';
+        seBox.innerHTML = `<strong>Conditional Self-Worth:</strong> Self-acceptance is partially tied to performance, status, or meeting parental/social ideals. Under chronic stress, the participant is susceptible to imposter anxiety.`;
+      } else {
+        seBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-200';
+        seBox.innerHTML = `<strong>Severe Social Mask Distortion:</strong> High false-self mask loading (${se.msk}/10) creates a massive structural gap (&Delta; Gap: ${se.gap} pts) over innate self-acceptance (${se.inn}/10). The individual feels compelled to project an ideal persona, producing profound internal alienation.`;
+      }
+
+      // Section V: Depressive Symptomatology UI
+      const dp = state.scores.depression;
+      document.getElementById('depression-raw-score').textContent = dp.raw;
+      document.getElementById('depression-severity-title').textContent = dp.tier;
+      document.getElementById('d-cluster-aff').textContent = `Dysphoria & Anhedonia: ${dp.aff}/4`;
+      document.getElementById('d-cluster-cog').textContent = `Guilt, Indecision & Bleak Outlook: ${dp.cog}/6`;
+      document.getElementById('d-cluster-veg').textContent = `Fatigue, Insomnia & Somatic: ${dp.veg}/6`;
+      document.getElementById('d-bar-aff').style.width = `${(dp.aff / 4) * 100}%`;
+      document.getElementById('d-bar-cog').style.width = `${(dp.cog / 6) * 100}%`;
+      document.getElementById('d-bar-veg').style.width = `${(dp.veg / 6) * 100}%`;
+
+      const dpBadge = document.getElementById('depression-tier-badge');
+      const dpBox = document.getElementById('depression-interpretation-box');
+      const crisisAlert = document.getElementById('depression-crisis-alert');
+
+      dpBadge.textContent = dp.tier;
+      if (dp.tier === 'Severe Distress') {
+        dpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-200';
+        dpBox.innerHTML = `<strong>Severe Depressive Episode Indicators:</strong> Pervasive affective blunting, vegetative exhaustion, and profound guilt. Immediate clinical intervention and psychotherapeutic containment are strongly recommended.`;
+      } else if (dp.tier === 'Moderate Distress') {
+        dpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200';
+        dpBox.innerHTML = `<strong>Moderate Clinical Dysphoria:</strong> Significant fatigue, sleep disruption, and reduced hedonic capacity. Supportive counseling and cognitive/somatic reframing are advised.`;
+      } else if (dp.tier === 'Mild Distress') {
+        dpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-200';
+        dpBox.innerHTML = `<strong>Mild / Reactive Dysphoria:</strong> Sub-clinical stress reaction with situational low mood or fatigue. Pacing and boundary adjustments are indicated.`;
+      } else {
+        dpBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200';
+        dpBox.innerHTML = `<strong>Low Depressive Burden:</strong> Minimal or absent depressive symptoms. Vitality and affective responsiveness are preserved.`;
+      }
+
+      if (dp.hasCrisis) crisisAlert.classList.remove('hidden');
+      else crisisAlert.classList.add('hidden');
+
+      // Second-Order Synthesis Card
       const gObs = state.scores.genetic['G-OBS'].raw;
       const gAnx = state.scores.genetic['G-ANX'].raw;
       const gNov = state.scores.genetic['G-NOV'].raw;
-
       const exhaustionCritical = (gObs >= 4 && sr >= 11);
       const somatizationCritical = (gAnx >= 4 && sr >= 11);
       const noveltyCritical = (gNov >= 4 && sr >= 11);
 
-      // Synthesis Banner
       const synthesisCard = document.getElementById('synthesis-card');
-      if (exhaustionCritical || somatizationCritical) {
+      if (exhaustionCritical || somatizationCritical || dp.raw >= 9) {
         synthesisCard.className = 'rounded-2xl border p-6 shadow-sm report-card bg-rose-50/70 border-rose-200 text-rose-950 space-y-2';
         synthesisCard.innerHTML = `
           <div class="flex items-center gap-2">
@@ -1380,36 +1809,36 @@
           </div>
           <h3 class="text-lg font-bold text-rose-900">Compound Biopsychosocial Exhaustion Script Detected</h3>
           <p class="text-xs text-rose-800 leading-relaxed">
-            Test taker exhibits high biological stress-temperament reactivity (${gObs >= 4 ? 'Dominant Obsessive duty drive' : ''}${gObs >= 4 && gAnx >= 4 ? ' & ' : ''}${gAnx >= 4 ? 'Dominant Anxiety-Prone harm avoidance' : ''}) coupled with severe learned self-repression (SR = ${sr}/20). Under Munakata's clinical model, this constellation inhibits authentic fatigue recognition and somatic rest, producing elevated risk for clinical depression, central sensitization pain, and neuroendocrine burnout.
+            The full battery reveals significant biological stress-reactivity (${gObs >= 4 ? 'Obsessive perfectionism' : ''}${gObs >= 4 && gAnx >= 4 ? ' & ' : ''}${gAnx >= 4 ? 'Anxiety harm-avoidance' : ''}) interacting with severe Self-Repression (SR = ${sr}/20), a low Self-Alignment Index (${se.alignmentPercent}%), and elevated D-Trait scores (${dp.raw}/20, ${dp.tier}). Under Munakata's clinical model, this constellation inhibits authentic fatigue recognition, accelerating HPA-axis depletion and somatic hyperalgesia.
           </p>
         `;
-      } else if (sr >= 7) {
+      } else if (sr >= 7 || cp.tier === 'Maladaptive Evasive') {
         synthesisCard.className = 'rounded-2xl border p-6 shadow-sm report-card bg-amber-50/70 border-amber-200 text-amber-950 space-y-2';
         synthesisCard.innerHTML = `
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
             <span class="text-xs font-mono font-bold uppercase tracking-wider text-amber-800">Moderate Strain Configuration</span>
           </div>
-          <h3 class="text-lg font-bold text-amber-900">Sub-Clinical Coping Strain Under Demand</h3>
+          <h3 class="text-lg font-bold text-amber-900">Sub-Clinical Coping Strain Under High Demands</h3>
           <p class="text-xs text-amber-800 leading-relaxed">
-            Temperament scores show functional adaptability with moderate self-repression tendencies (SR = ${sr}/20). Preventive coaching should reinforce assertiveness, pacing, and somatic boundaries during acute life changes.
+            Functional biological adaptability is challenged by moderate self-repression (SR = ${sr}/20) and situational coping evasion (${cp.eva}/10). Preventive coaching should reinforce assertiveness, authentic pacing, and boundary defense.
           </p>
         `;
       } else {
         synthesisCard.className = 'rounded-2xl border p-6 shadow-sm report-card bg-emerald-50/70 border-emerald-200 text-emerald-950 space-y-2';
         synthesisCard.innerHTML = `
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
             <span class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800">Resilient Psychosomatic Profile</span>
           </div>
           <h3 class="text-lg font-bold text-emerald-900">Autonomous Self-Reward Orientation</h3>
           <p class="text-xs text-emerald-800 leading-relaxed">
-            The profile reflects healthy emotional transparency and somatic responsiveness (SR = ${sr}/20). Intrinsic temperaments are expressed without compulsive other-reward dependency or chronic somatic suppression.
+            The profile reflects healthy emotional transparency, strong self-alignment (${se.alignmentPercent}%), adaptive problem-solving (Net: ${cp.net}/20), and low depressive burden.
           </p>
         `;
       }
 
-      // Populate Interaction Cards
+      // Interaction Dynamic Cards
       const dynContainer = document.getElementById('interaction-dynamics-container');
       dynContainer.innerHTML = `
         <div class="p-4 rounded-xl border ${exhaustionCritical ? 'bg-rose-50/80 border-rose-300 ring-1 ring-rose-400/20' : 'bg-slate-50 border-slate-200'}">
@@ -1420,10 +1849,8 @@
             </span>
           </div>
           <p class="text-[11px] text-slate-600 leading-relaxed">
-            <strong>Obsessive (Score: ${gObs}/5) + SR (Score: ${sr}/20):</strong>
-            ${exhaustionCritical 
-              ? 'Conscientious duty drive continually pushes physical limits while emotional suppression forbids taking rest, driving HPA-axis depletion.' 
-              : 'Obsessive conscientiousness is counterbalanced by sufficient emotional disclosure or manageable workload.'}
+            <strong>Obsessive (${gObs}/5) + SR (${sr}/20) + D-Trait (${dp.raw}/20):</strong>
+            ${exhaustionCritical ? 'Perfectionist duty drive continually forces work output while emotional suppression forbids rest, depleting neuroendocrine reserves.' : 'Duty orientation is balanced by sufficient self-care or manageable workload.'}
           </p>
         </div>
 
@@ -1435,10 +1862,8 @@
             </span>
           </div>
           <p class="text-[11px] text-slate-600 leading-relaxed">
-            <strong>Anxiety (Score: ${gAnx}/5) + SR (Score: ${sr}/20):</strong>
-            ${somatizationCritical
-              ? 'Visceral threat vigilance denied verbal expression discharges into the musculoskeletal system, maintaining chronic hyperalgesia (Hashizume et al., 2025).'
-              : 'Anxiety responses are regulated without significant somatic displacement or muscular shielding.'}
+            <strong>Anxiety (${gAnx}/5) + SR (${sr}/20):</strong>
+            ${somatizationCritical ? 'Visceral threat vigilance denied authentic expression discharges into somatic hyper-reactivity and central sensitization (Hashizume et al., 2025).' : 'Anxiety reactivity is modulated without substantial somatic muscular shielding.'}
           </p>
         </div>
 
@@ -1450,48 +1875,70 @@
             </span>
           </div>
           <p class="text-[11px] text-slate-600 leading-relaxed">
-            <strong>Novelty (Score: ${gNov}/5) + SR (Score: ${sr}/20):</strong>
-            ${noveltyCritical
-              ? 'High exploratory sensation seeking pursued for external validation creates rapid engagement followed by abrupt abandonment when praise wanes.'
-              : 'Exploratory impulses are directed toward intrinsic goals rather than external approval seeking.'}
+            <strong>Novelty (${gNov}/5) + Social Mask (${se.msk}/10):</strong>
+            ${noveltyCritical ? 'Exploratory impulses pursued for social applause lead to high excitement followed by abrupt disengagement when praise declines.' : 'Novelty-seeking is steered toward authentic intrinsic interests.'}
           </p>
         </div>
       `;
 
-      // Populate Subscale Table
+      // Subscale Matrix Table
       const tableBody = document.getElementById('scores-table-body');
       let tableHtml = '';
       GENETIC_SUBSCALES.forEach(scale => {
         const sc = state.scores.genetic[scale.id];
-        let tierClass = 'bg-slate-100 text-slate-700';
-        if (sc.tier === 'Dominant') tierClass = 'bg-rose-100 text-rose-800 font-bold';
-        else if (sc.tier === 'Sub-Dominant') tierClass = 'bg-amber-100 text-amber-800 font-semibold';
-        else tierClass = 'bg-emerald-50 text-emerald-800';
-
+        let tierClass = sc.tier === 'Dominant' ? 'bg-rose-100 text-rose-800 font-bold' : (sc.tier === 'Sub-Dominant' ? 'bg-amber-100 text-amber-800 font-semibold' : 'bg-emerald-50 text-emerald-800');
         tableHtml += `
           <tr class="hover:bg-slate-50 transition">
-            <td class="py-2.5 px-3 font-semibold text-slate-900">${scale.name} <span class="font-mono text-slate-400 text-[10px]">(${scale.id})</span></td>
-            <td class="py-2.5 px-3 text-slate-500">${scale.category}</td>
-            <td class="py-2.5 px-3 text-center font-mono font-bold">${sc.raw} / 5</td>
-            <td class="py-2.5 px-3 text-center">
-              <span class="px-2 py-0.5 rounded-full text-[10px] ${tierClass}">${sc.tier}</span>
-            </td>
-            <td class="py-2.5 px-3 text-slate-600">${scale.traitSummary}</td>
+            <td class="py-2 px-3 font-semibold text-slate-900">${scale.name} <span class="font-mono text-slate-400 text-[10px]">(${scale.id})</span></td>
+            <td class="py-2 px-3 text-slate-500">${scale.category}</td>
+            <td class="py-2 px-3 text-center font-mono font-bold">${sc.raw} / 5</td>
+            <td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] ${tierClass}">${sc.tier}</span></td>
+            <td class="py-2 px-3 text-slate-600">${scale.traitSummary}</td>
           </tr>
         `;
       });
 
-      // Append Self Repression row
-      let srTierClass = srTier === 'Severe' ? 'bg-rose-100 text-rose-800 font-bold' : (srTier === 'Moderate' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-50 text-emerald-800');
+      // Append Self-Repression
       tableHtml += `
-        <tr class="bg-indigo-50/50 hover:bg-indigo-50 transition font-semibold">
-          <td class="py-2.5 px-3 text-indigo-950">Self-Repression Scale <span class="font-mono text-indigo-600 text-[10px]">(SR-Total)</span></td>
-          <td class="py-2.5 px-3 text-indigo-800">Acquired Coping Script</td>
-          <td class="py-2.5 px-3 text-center font-mono text-indigo-950 font-bold">${sr} / 20</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="px-2 py-0.5 rounded-full text-[10px] ${srTierClass}">${srTier}</span>
-          </td>
-          <td class="py-2.5 px-3 text-indigo-900 font-normal">Emotional suppression, bodily ignoring &amp; other-reward compliance.</td>
+        <tr class="bg-indigo-50/40 hover:bg-indigo-50 transition font-semibold">
+          <td class="py-2 px-3 text-indigo-950">Self-Repression Scale <span class="font-mono text-indigo-600 text-[10px]">(SR-Total)</span></td>
+          <td class="py-2 px-3 text-indigo-800">Acquired Coping Script</td>
+          <td class="py-2 px-3 text-center font-mono text-indigo-950 font-bold">${sr} / 20</td>
+          <td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] ${srTier === 'Severe' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-50 text-emerald-800'}">${srTier}</span></td>
+          <td class="py-2 px-3 text-indigo-900 font-normal">Somatic denial, affective masking, other-reward compliance.</td>
+        </tr>
+      `;
+
+      // Append Problem-Solving
+      tableHtml += `
+        <tr class="bg-emerald-50/40 hover:bg-emerald-50 transition font-semibold">
+          <td class="py-2 px-3 text-emerald-950">Problem-Solving Coping <span class="font-mono text-emerald-600 text-[10px]">(PS-Net)</span></td>
+          <td class="py-2 px-3 text-emerald-800">Action Coping Trait</td>
+          <td class="py-2 px-3 text-center font-mono text-emerald-950 font-bold">${cp.net} / 20</td>
+          <td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] ${cp.tier === 'Adaptive Coping' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${cp.tier}</span></td>
+          <td class="py-2 px-3 text-emerald-900 font-normal">Active Confrontation (${cp.act}/10) vs. Evasive Avoidance (${cp.eva}/10).</td>
+        </tr>
+      `;
+
+      // Append Self-Alignment
+      tableHtml += `
+        <tr class="bg-amber-50/40 hover:bg-amber-50 transition font-semibold">
+          <td class="py-2 px-3 text-amber-950">Self-Esteem &amp; Alignment <span class="font-mono text-amber-600 text-[10px]">(SE-Index)</span></td>
+          <td class="py-2 px-3 text-amber-800">Identity &amp; Social Mask</td>
+          <td class="py-2 px-3 text-center font-mono text-amber-950 font-bold">${se.alignmentPercent}%</td>
+          <td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] ${se.alignmentPercent >= 80 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${se.tier}</span></td>
+          <td class="py-2 px-3 text-amber-900 font-normal">Innate Self (${se.inn}/10) vs. Social Mask (${se.msk}/10) with &Delta; Gap: ${se.gap} pts.</td>
+        </tr>
+      `;
+
+      // Append Depressive Symptomatology
+      tableHtml += `
+        <tr class="bg-rose-50/40 hover:bg-rose-50 transition font-semibold">
+          <td class="py-2 px-3 text-rose-950">Depressive Symptomatology <span class="font-mono text-rose-600 text-[10px]">(D-Trait)</span></td>
+          <td class="py-2 px-3 text-rose-800">Clinical Symptom Status</td>
+          <td class="py-2 px-3 text-center font-mono text-rose-950 font-bold">${dp.raw} / 20</td>
+          <td class="py-2 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] ${dp.raw >= 9 ? 'bg-rose-100 text-rose-800' : 'bg-emerald-50 text-emerald-800'}">${dp.tier}</span></td>
+          <td class="py-2 px-3 text-rose-900 font-normal">Direct affective, cognitive, vegetative and existential depressive distress.</td>
         </tr>
       `;
       tableBody.innerHTML = tableHtml;
@@ -1506,21 +1953,21 @@
           </p>
         </div>
         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-          <span class="font-bold text-slate-900 block mb-1">2. Somato-Affective Interoception Practice</span>
+          <span class="font-bold text-slate-900 block mb-1">2. Dismantling the Social Mask & Restoring Self-Alignment</span>
           <p class="text-slate-600 leading-relaxed">
-            Cultivate somatic check-ins before completing obligations. When neck tension or fatigue arises, replace the reflex to suppress with 5 minutes of somatic pacing and hydration.
+            Current Self-Alignment (${se.alignmentPercent}%) indicates elevated false-self strain. Establish unconditional self-reward rituals independent of external applause or social approval.
           </p>
         </div>
         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-          <span class="font-bold text-slate-900 block mb-1">3. Assertive Boundary Setting (The "Stop" Script)</span>
+          <span class="font-bold text-slate-900 block mb-1">3. Transitioning from Evasive to Active Coping</span>
           <p class="text-slate-600 leading-relaxed">
-            Practice scripted refusal templates for unreasonable demands: "I would like to support you, but my schedule currently does not permit taking on additional responsibilities."
+            Target evasive avoidance (${cp.eva}/10). Implement concrete task-chunking and scripted boundary limits to preempt circular rumination.
           </p>
         </div>
         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-          <span class="font-bold text-slate-900 block mb-1">4. Transition toward Self-Reward Motivation</span>
+          <span class="font-bold text-slate-900 block mb-1">4. Somato-Affective Interoception Practice</span>
           <p class="text-slate-600 leading-relaxed">
-            Schedule daily non-contingent reward activities (music, nature walks, hobbies) that do not require external approval or performance validation.
+            Cultivate somatic check-ins before completing obligations. When bodily fatigue or tension arises, replace the reflex to suppress with 5 minutes of somatic pacing and hydration.
           </p>
         </div>
       `;
@@ -1532,9 +1979,7 @@
       const canvas = document.getElementById('temperamentRadarChart');
       if (!canvas) return;
 
-      if (radarChartInstance) {
-        radarChartInstance.destroy();
-      }
+      if (radarChartInstance) radarChartInstance.destroy();
 
       const scoresArray = [
         state.scores.genetic['G-CYC']?.raw || 0,
@@ -1559,8 +2004,7 @@
               borderWidth: 2.5,
               pointBackgroundColor: '#0369a1',
               pointBorderColor: '#ffffff',
-              pointRadius: 4,
-              pointHoverRadius: 6
+              pointRadius: 4
             },
             {
               label: 'Dominance Cutoff (≥ 4)',
@@ -1580,36 +2024,19 @@
             r: {
               min: 0,
               max: 5,
-              ticks: {
-                stepSize: 1,
-                display: false
-              },
+              ticks: { stepSize: 1, display: false },
               pointLabels: {
-                font: {
-                  family: 'Inter',
-                  size: 11,
-                  weight: '600'
-                },
+                font: { family: 'Inter', size: 11, weight: '600' },
                 color: '#334155'
               },
-              grid: {
-                color: '#e2e8f0'
-              },
-              angleLines: {
-                color: '#e2e8f0'
-              }
+              grid: { color: '#e2e8f0' },
+              angleLines: { color: '#e2e8f0' }
             }
           },
           plugins: {
             legend: {
               position: 'bottom',
-              labels: {
-                boxWidth: 12,
-                font: {
-                  size: 11,
-                  family: 'Inter'
-                }
-              }
+              labels: { boxWidth: 12, font: { size: 11, family: 'Inter' } }
             }
           }
         }
@@ -1619,9 +2046,12 @@
     function generateTextReport() {
       const g = state.scores.genetic;
       const sr = state.scores.repressionTotal;
+      const cp = state.scores.coping;
+      const se = state.scores.selfEsteem;
+      const dp = state.scores.depression;
 
       let r = `========================================================================\n`;
-      r += `STRUCTURED ASSOCIATION TECHNIQUE (SAT) CLINICAL PSYCHOMETRIC REPORT\n`;
+      r += `STRUCTURED ASSOCIATION TECHNIQUE (SAT) FULL PSYCHOMETRIC REPORT (5 SCALES)\n`;
       r += `University of Tsukuba / Tsunetsugu Munakata Psychometric Architecture\n`;
       r += `========================================================================\n\n`;
       r += `Report ID:        ${state.reportId}\n`;
@@ -1639,28 +2069,33 @@
       r += `* Obsessive Conscience  (G-OBS):   ${g['G-OBS']?.raw}/5 [${g['G-OBS']?.tier}]\n`;
       r += `* Anxiety-Prone / Harm  (G-ANX):   ${g['G-ANX']?.raw}/5 [${g['G-ANX']?.tier}]\n`;
       r += `* Novelty-Seeking       (G-NOV):   ${g['G-NOV']?.raw}/5 [${g['G-NOV']?.tier}]\n`;
-      r += `(Cutoffs: 4–5 Dominant | 3 Sub-Dominant | 0–2 Inactive)\n\n`;
-      r += `------------------------------------------------------------------------\n`;
+      r += `\n------------------------------------------------------------------------\n`;
       r += `2. SELF-REPRESSION BEHAVIORAL SCALE (Section II, 0–20 Scale)\n`;
       r += `------------------------------------------------------------------------\n`;
-      r += `Total Repression Score:  ${sr} / 20\n`;
-      r += `Clinical Classification: ${state.scores.repressionTier}\n`;
+      r += `Total Repression Score:  ${sr} / 20 [${state.scores.repressionTier}]\n`;
       r += `Behavioral Life Script:  ${state.scores.behavioralDrive}\n`;
-      r += `(Cutoffs: 0–6 Healthy | 7–10 Moderate | 11–20 Severe Self-Suppression)\n\n`;
+      r += `\n------------------------------------------------------------------------\n`;
+      r += `3. PROBLEM-SOLVING COPING BEHAVIORAL SCALE (Section III, 0–20 Net Index)\n`;
       r += `------------------------------------------------------------------------\n`;
-      r += `3. SECOND-ORDER BIOPSYCHOSOCIAL INTERACTION DYNAMICS\n`;
+      r += `* Active Problem-Solving (PS-ACT): ${cp.act} / 10\n`;
+      r += `* Maladaptive Evasive    (PS-EVA): ${cp.eva} / 10\n`;
+      r += `* Net Coping Index       (PS-Net): ${cp.net} / 20 [${cp.tier}]\n`;
+      r += `\n------------------------------------------------------------------------\n`;
+      r += `4. SELF-ESTEEM & INNATE SELF-ALIGNMENT SCALE (Section IV)\n`;
       r += `------------------------------------------------------------------------\n`;
-      r += `* Exhaustion Depressive Risk (G-OBS >= 4 & SR >= 11): ${g['G-OBS']?.raw >= 4 && sr >= 11 ? 'CRITICAL RISK' : 'LOW RISK'}\n`;
-      r += `* Somatization / Chronic Pain (G-ANX >= 4 & SR >= 11): ${g['G-ANX']?.raw >= 4 && sr >= 11 ? 'CRITICAL RISK' : 'LOW RISK'}\n`;
-      r += `* Novelty-Burnout Dynamic    (G-NOV >= 4 & SR >= 11): ${g['G-NOV']?.raw >= 4 && sr >= 11 ? 'ELEVATED' : 'MODERATE / LOW'}\n\n`;
+      r += `* Innate Self-Acceptance (SE-INN): ${se.inn} / 10\n`;
+      r += `* Social Mask Script     (SE-MSK): ${se.msk} / 10\n`;
+      r += `* Structural Mask Gap    (Delta):  ${se.gap >= 0 ? '+' : ''}${se.gap} pts\n`;
+      r += `* Self-Alignment Index:            ${se.alignmentPercent}% [${se.tier}]\n`;
+      r += `\n------------------------------------------------------------------------\n`;
+      r += `5. DIRECT DEPRESSIVE SYMPTOMATOLOGY SCALE (Section V, D-Trait 0–20)\n`;
       r += `------------------------------------------------------------------------\n`;
-      r += `4. TARGETED CLINICAL FORMULATION & INTERVENTIONS\n`;
-      r += `------------------------------------------------------------------------\n`;
-      r += `1. Decouple genetic temperament demands from learned other-reward compliance.\n`;
-      r += `2. Practice somato-affective interoception (respond immediately to somatic fatigue).\n`;
-      r += `3. Assertive boundary training (scripted limit-setting with authority figures).\n`;
-      r += `4. Reorient daily lifestyle habits toward autonomous self-reward motivation.\n\n`;
-      r += `========================================================================\n`;
+      r += `* Total D-Trait Severity Score:    ${dp.raw} / 20 [${dp.tier}]\n`;
+      r += `* Affective Cluster:               ${dp.aff} / 4\n`;
+      r += `* Cognitive Cluster:               ${dp.cog} / 6\n`;
+      r += `* Vegetative Cluster:              ${dp.veg} / 6\n`;
+      if (dp.hasCrisis) r += `* CRISIS ALERT: Passive death wish / existential escape endorsed (Item D-10)\n`;
+      r += `\n========================================================================\n`;
       r += `Formulated according to Tsunetsugu Munakata, Ph.D., Academy for Health Counseling.\n`;
       return r;
     }
@@ -1692,9 +2127,7 @@
       pillsEl.innerHTML = state.recipientEmails.map((email, idx) => `
         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-800 text-[11px] font-mono shadow-xs">
           <span class="truncate max-w-[180px]">${escapeHtml(email)}</span>
-          <button type="button" onclick="removeEmail(${idx}); renderModalRecipients();" class="text-slate-400 hover:text-rose-600 ml-1">
-            &times;
-          </button>
+          <button type="button" onclick="removeEmail(${idx}); renderModalRecipients();" class="text-slate-400 hover:text-rose-600 ml-1">&times;</button>
         </span>
       `).join('');
     }
@@ -1717,7 +2150,7 @@
 
       const primary = state.recipientEmails[0];
       const cc = state.recipientEmails.slice(1).join(',');
-      const subject = encodeURIComponent(`SAT Psychometric Diagnostic Report - ${state.participantName} [${state.reportId}]`);
+      const subject = encodeURIComponent(`SAT Full Psychometric Diagnostic Report - ${state.participantName} [${state.reportId}]`);
       const body = encodeURIComponent(generateTextReport());
 
       let mailtoUrl = `mailto:${primary}?subject=${subject}&body=${body}`;
@@ -1753,379 +2186,7 @@
 
     function handleAddEmailClick() {
       const emailInput = document.getElementById('email-input-field');
-      if (emailInput) {
-        handleEmailAddition(emailInput.value);
-      }
-    }
-
-    function initApp() {
-      const dateField = document.getElementById('evaluation-date');
-      if (dateField) dateField.value = state.evaluationDate;
-
-      renderEmailChips();
-      renderGeneticQuestions();
-      renderRepressionQuestions();
-      updateAnsweredStats();
-
-      const emailInput = document.getElementById('email-input-field');
-      const addEmailBtn = document.getElementById('add-email-btn');
-
-      if (emailInput) {
-        emailInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ',') {
-            e.preventDefault();
-            handleEmailAddition(emailInput.value);
-          }
-        });
-      }
-
-      if (addEmailBtn) {
-        addEmailBtn.onclick = handleAddEmailClick;
-      }
-
-      // Stepper Tab navigation clicks
-      const tab1 = document.getElementById('tab-step-1');
-      const tab2 = document.getElementById('tab-step-2');
-      const tab3 = document.getElementById('tab-step-3');
-
-      if (tab1) tab1.onclick = () => goToStep(1);
-      if (tab2) tab2.onclick = () => goToStep(2);
-      if (tab3) tab3.onclick = () => {
-        if (state.scores.repressionTotal || Object.keys(state.scores.genetic).length > 0) {
-          goToStep(3);
-        }
-      };
-
-      const demoBtn = document.getElementById('demo-btn');
-      if (demoBtn) demoBtn.onclick = loadDemonstrationProfile;
-
-      const resetBtn = document.getElementById('reset-btn');
-      if (resetBtn) resetBtn.onclick = resetAllResponses;
-    }
-
-    // Expose functions globally to window for reliable onclick routing
-    window.goToStep = goToStep;
-    window.handleAddEmailClick = handleAddEmailClick;
-    window.handleEmailAddition = handleEmailAddition;
-    window.removeEmail = removeEmail;
-    window.loadDemonstrationProfile = loadDemonstrationProfile;
-    window.resetAllResponses = resetAllResponses;
-    window.openValidationModal = openValidationModal;
-    window.closeValidationModal = closeValidationModal;
-    window.runAutomatedValidationSuite = runAutomatedValidationSuite;
-    window.filterValidationCategory = filterValidationCategory;
-    window.copyValidationAuditLog = copyValidationAuditLog;
-    window.openEmailDispatcherModal = openEmailDispatcherModal;
-    window.closeEmailModal = closeEmailModal;
-    window.addEmailFromModal = addEmailFromModal;
-    window.dispatchViaMailto = dispatchViaMailto;
-    window.copyReportToClipboard = copyReportToClipboard;
-    window.sendViaWebhook = sendViaWebhook;
-    window.setGeneticAnswer = setGeneticAnswer;
-    window.setRepressionAnswer = setRepressionAnswer;
-    window.calculateAndShowReport = calculateAndShowReport;
-
-    // Execute immediately if DOM is ready, or listen to DOMContentLoaded
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initApp);
-    } else {
-      initApp();
-    }
-
-    /**
-     * Automated Scoring Engine Validation Suite (SAT Diagnostics)
-     * Executes Boundary Value Analysis, Scale Isolation, and Second-Order Interaction logic.
-     */
-    let validationResultsStore = [];
-    let currentValidationFilter = 'ALL';
-
-    function openValidationModal() {
-      document.getElementById('validation-modal').classList.remove('hidden');
-      runAutomatedValidationSuite();
-    }
-
-    function closeValidationModal() {
-      document.getElementById('validation-modal').classList.add('hidden');
-    }
-
-    function getGeneticTierPure(score) {
-      if (score >= 4) return 'Dominant';
-      if (score === 3) return 'Sub-Dominant';
-      return 'Non-Dominant';
-    }
-
-    function getRepressionTierPure(score) {
-      if (score >= 11) return 'Severe';
-      if (score >= 7) return 'Moderate';
-      return 'Healthy';
-    }
-
-    function getBehavioralDrivePure(score) {
-      if (score >= 11) return 'Other-Reward Dominant (他者報酬型)';
-      if (score >= 7) return 'Mixed / Context-Dependent';
-      return 'Self-Reward Dominant (自己報酬型)';
-    }
-
-    function runAutomatedValidationSuite() {
-      const startTime = performance.now();
-      const results = [];
-
-      function assertCase(id, category, testName, actual, expected, details = '') {
-        const passed = (actual === expected);
-        results.push({
-          id,
-          category,
-          name: testName,
-          actual: String(actual),
-          expected: String(expected),
-          passed,
-          details
-        });
-      }
-
-      // 1. Genetic Temperament Boundary Value Analysis (0..5)
-      assertCase('BVA-G0', 'BVA', 'Genetic Floor (Score = 0)', getGeneticTierPure(0), 'Non-Dominant', 'Subscale lower bound floor');
-      assertCase('BVA-G1', 'BVA', 'Genetic Inactive Upper Bound (Score = 2)', getGeneticTierPure(2), 'Non-Dominant', 'Maximum threshold for Non-Dominant');
-      assertCase('BVA-G2', 'BVA', 'Genetic Sub-Dominant Exact (Score = 3)', getGeneticTierPure(3), 'Sub-Dominant', 'Latent vulnerability boundary');
-      assertCase('BVA-G3', 'BVA', 'Genetic Dominant Lower Bound (Score = 4)', getGeneticTierPure(4), 'Dominant', 'Trigger threshold for Dominant classification');
-      assertCase('BVA-G4', 'BVA', 'Genetic Ceiling (Score = 5)', getGeneticTierPure(5), 'Dominant', 'Maximum subscale ceiling');
-
-      // 2. Self-Repression Scale Boundary Value Analysis (0..20)
-      assertCase('BVA-SR1', 'BVA', 'Repression Absolute Floor (Score = 0)', getRepressionTierPure(0), 'Healthy', 'Full emotional transparency baseline');
-      assertCase('BVA-SR2', 'BVA', 'Repression Healthy Cutoff (Score = 6)', getRepressionTierPure(6), 'Healthy', 'Upper limit of adaptive self-reward');
-      assertCase('BVA-SR3', 'BVA', 'Repression Moderate Lower (Score = 7)', getRepressionTierPure(7), 'Moderate', 'Threshold transition to other-directed strain');
-      assertCase('BVA-SR4', 'BVA', 'Repression Moderate Upper (Score = 10)', getRepressionTierPure(10), 'Moderate', 'Ceiling of moderate coping script');
-      assertCase('BVA-SR5', 'BVA', 'Repression Severe Lower (Score = 11)', getRepressionTierPure(11), 'Severe', 'Clinical path of chronic suppression');
-      assertCase('BVA-SR6', 'BVA', 'Repression Scale Ceiling (Score = 20)', getRepressionTierPure(20), 'Severe', 'Complete somatosensory & emotional denial');
-
-      // 3. Behavioral Script Classification Tiers
-      assertCase('BVA-DRV1', 'BVA', 'Drive Script for SR = 6', getBehavioralDrivePure(6), 'Self-Reward Dominant (自己報酬型)');
-      assertCase('BVA-DRV2', 'BVA', 'Drive Script for SR = 7', getBehavioralDrivePure(7), 'Mixed / Context-Dependent');
-      assertCase('BVA-DRV3', 'BVA', 'Drive Script for SR = 11', getBehavioralDrivePure(11), 'Other-Reward Dominant (他者報酬型)');
-
-      // 4. Subscale Item Number Mapping Integrity
-      const expectedMappings = {
-        'G-CYC': [1, 2, 3, 4, 5],
-        'G-VIS': [6, 7, 8, 9, 10],
-        'G-AUT': [11, 12, 13, 14, 15],
-        'G-OBS': [16, 17, 18, 19, 20],
-        'G-ANX': [21, 22, 23, 24, 25],
-        'G-NOV': [26, 27, 28, 29, 30]
-      };
-
-      GENETIC_SUBSCALES.forEach((scale) => {
-        const itemNums = scale.items.map(i => i.num);
-        const expected = expectedMappings[scale.id];
-        const isMatch = JSON.stringify(itemNums) === JSON.stringify(expected);
-        assertCase(`ISO-${scale.id}`, 'ISO', `Item Map Integrity: ${scale.id}`, isMatch, true, `Items [${itemNums.join(', ')}] matched orthogonal design`);
-      });
-
-      // 5. Cross-Scale Isolation Test (Simulating Item 06 -> Viscous ONLY)
-      const mockAnswers = {};
-      for (let i = 1; i <= 30; i++) mockAnswers[i] = 0;
-      mockAnswers[6] = 1; // Item 06 belongs strictly to G-VIS
-
-      const mockScores = {};
-      GENETIC_SUBSCALES.forEach(scale => {
-        let sum = 0;
-        scale.items.forEach(i => { sum += (mockAnswers[i.num] || 0); });
-        mockScores[scale.id] = sum;
-      });
-
-      assertCase('ISO-CONT1', 'ISO', 'Item 06 Endorsement: G-VIS Score', mockScores['G-VIS'], 1, 'Only target dimension should increment');
-      assertCase('ISO-CONT2', 'ISO', 'Item 06 Endorsement: Neighbor G-CYC Score', mockScores['G-CYC'], 0, 'No bleeding into neighboring cyclothymic dimension');
-      assertCase('ISO-CONT3', 'ISO', 'Item 06 Endorsement: Neighbor G-AUT Score', mockScores['G-AUT'], 0, 'No bleeding into autistic dimension');
-
-      // 6. Second-Order Interaction Combinatorics
-      function evaluateDynamicsMock(gObs, gAnx, gNov, sr) {
-        return {
-          depressiveRisk: (gObs >= 4 && sr >= 11) ? 'CRITICAL RISK' : 'LOW RISK',
-          somatizationRisk: (gAnx >= 4 && sr >= 11) ? 'CRITICAL RISK' : 'LOW RISK',
-          noveltyBurnout: (gNov >= 4 && sr >= 11) ? 'ELEVATED' : 'MODERATE / LOW'
-        };
-      }
-
-      // INT-01: Baseline Sub-threshold (OBS:3, ANX:3, NOV:3, SR:10)
-      const int01 = evaluateDynamicsMock(3, 3, 3, 10);
-      assertCase('INT-01A', 'INT', 'INT-01: Depressive Risk (OBS:3, SR:10)', int01.depressiveRisk, 'LOW RISK', 'Subthreshold genetic and SR');
-      assertCase('INT-01B', 'INT', 'INT-01: Somatization Risk (ANX:3, SR:10)', int01.somatizationRisk, 'LOW RISK', 'Subthreshold anxiety and SR');
-
-      // INT-02: High OBS but SR below cutoff (OBS:4, SR:10) -> Should NOT trigger critical
-      const int02 = evaluateDynamicsMock(4, 3, 3, 10);
-      assertCase('INT-02', 'INT', 'INT-02: Depressive Risk (OBS:4, SR:10)', int02.depressiveRisk, 'LOW RISK', 'Suppression is not severe (SR=10 < 11)');
-
-      // INT-03: High SR but OBS below cutoff (OBS:3, SR:11) -> Should NOT trigger critical
-      const int03 = evaluateDynamicsMock(3, 3, 3, 11);
-      assertCase('INT-03', 'INT', 'INT-03: Depressive Risk (OBS:3, SR:11)', int03.depressiveRisk, 'LOW RISK', 'Obsessive trait is not dominant (OBS=3 < 4)');
-
-      // INT-05: Critical Exhaustion Depressive Risk Trigger (OBS:4, SR:11)
-      const int05 = evaluateDynamicsMock(4, 3, 3, 11);
-      assertCase('INT-05', 'INT', 'INT-05: Depressive Risk (OBS:4, SR:11)', int05.depressiveRisk, 'CRITICAL RISK', 'Statothymic exhaustion + somatic denial trigger');
-
-      // INT-06: Critical Somatization Pain Risk Trigger (ANX:4, SR:11)
-      const int06 = evaluateDynamicsMock(3, 4, 3, 11);
-      assertCase('INT-06', 'INT', 'INT-06: Somatization Risk (ANX:4, SR:11)', int06.somatizationRisk, 'CRITICAL RISK', 'Threat apprehension + emotional masking trigger');
-
-      // INT-07: Elevated Agitated Novelty-Burnout Dynamic (NOV:4, SR:11)
-      const int07 = evaluateDynamicsMock(3, 3, 4, 11);
-      assertCase('INT-07', 'INT', 'INT-07: Novelty Burnout (NOV:4, SR:11)', int07.noveltyBurnout, 'ELEVATED', 'Novelty seeking + other-reward dependency trigger');
-
-      // INT-08: Compound Multi-Vulnerability Trigger (OBS:5, ANX:5, NOV:5, SR:20)
-      const int08 = evaluateDynamicsMock(5, 5, 5, 20);
-      assertCase('INT-08A', 'INT', 'INT-08: Multi-Stress Depressive Risk', int08.depressiveRisk, 'CRITICAL RISK');
-      assertCase('INT-08B', 'INT', 'INT-08: Multi-Stress Somatization Risk', int08.somatizationRisk, 'CRITICAL RISK');
-      assertCase('INT-08C', 'INT', 'INT-08: Multi-Stress Novelty Burnout', int08.noveltyBurnout, 'ELEVATED');
-
-      // 7. Gauge Meter Clamping Mathematics
-      function computeNeedleLeft(score) {
-        return Math.min(100, Math.max(0, (score / 20) * 100));
-      }
-      assertCase('CALC-NDL1', 'BVA', 'Needle Position at Score 0', computeNeedleLeft(0), 0, 'Needle should align with 0%');
-      assertCase('CALC-NDL2', 'BVA', 'Needle Position at Score 10', computeNeedleLeft(10), 50, 'Needle should align with 50%');
-      assertCase('CALC-NDL3', 'BVA', 'Needle Position at Score 20', computeNeedleLeft(20), 100, 'Needle should align with 100%');
-      assertCase('CALC-NDL4', 'BVA', 'Needle Position Over-range Clamp', computeNeedleLeft(25), 100, 'Needle must not exceed 100% container width');
-
-      const endTime = performance.now();
-      const duration = Math.round((endTime - startTime) * 100) / 100;
-
-      validationResultsStore = results;
-      renderValidationModalUI(results, duration);
-      showToast(`Scoring validation completed: ${results.filter(r => r.passed).length}/${results.length} assertions passed.`, 'success');
-    }
-
-    function renderValidationModalUI(results, duration) {
-      const total = results.length;
-      const passed = results.filter(r => r.passed).length;
-      const failed = results.filter(r => !r.passed).length;
-
-      document.getElementById('suite-stat-total').textContent = total;
-      document.getElementById('suite-stat-passed').textContent = passed;
-      document.getElementById('suite-stat-failed').textContent = failed;
-      document.getElementById('suite-stat-time').textContent = `${duration} ms`;
-
-      // Header status badge
-      const badge = document.getElementById('validation-overall-badge');
-      if (failed === 0) {
-        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300';
-        badge.textContent = '100% PASS (VERIFIED)';
-      } else {
-        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-100 text-rose-800 border border-rose-300';
-        badge.textContent = `${failed} ASSERTION DEFECTS`;
-      }
-
-      // Category counts
-      document.getElementById('val-count-all').textContent = total;
-      document.getElementById('val-count-bva').textContent = results.filter(r => r.category === 'BVA').length;
-      document.getElementById('val-count-int').textContent = results.filter(r => r.category === 'INT').length;
-      document.getElementById('val-count-iso').textContent = results.filter(r => r.category === 'ISO').length;
-
-      renderValidationCards();
-    }
-
-    function filterValidationCategory(category) {
-      currentValidationFilter = category;
-      const buttons = document.querySelectorAll('.val-filter-btn');
-      buttons.forEach(btn => {
-        if (btn.getAttribute('data-category') === category) {
-          btn.className = 'val-filter-btn px-2.5 py-1 rounded-lg font-semibold bg-slate-800 text-white transition text-[11px]';
-        } else {
-          btn.className = 'val-filter-btn px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-200 transition text-[11px]';
-        }
-      });
-      renderValidationCards();
-    }
-
-    function renderValidationCards() {
-      const container = document.getElementById('validation-test-list');
-      container.innerHTML = '';
-
-      const filtered = validationResultsStore.filter(r => {
-        return currentValidationFilter === 'ALL' || r.category === currentValidationFilter;
-      });
-
-      filtered.forEach(tc => {
-        const row = document.createElement('div');
-        row.className = `p-3 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition ${
-          tc.passed ? 'bg-white border-slate-200 hover:border-emerald-300' : 'bg-rose-50/70 border-rose-300'
-        }`;
-
-        row.innerHTML = `
-          <div class="flex items-start gap-3">
-            <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5 ${
-              tc.passed ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
-            }">
-              ${tc.passed ? '&check;' : '&times;'}
-            </span>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
-                  ${tc.id}
-                </span>
-                <span class="font-semibold text-slate-900 text-xs">${tc.name}</span>
-              </div>
-              <div class="text-[11px] text-slate-500 mt-0.5 leading-snug">
-                ${tc.details || 'Assertion verified against diagnostic engine specification.'}
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3 shrink-0 self-end sm:self-auto font-mono text-[11px]">
-            <div class="text-right">
-              <span class="text-slate-400 block text-[9px] uppercase font-sans">Received / Target</span>
-              <span class="font-semibold text-slate-800">"${tc.actual}"</span>
-            </div>
-            <span class="px-2 py-0.5 rounded-full font-bold text-[10px] tracking-wider uppercase ${
-              tc.passed ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-rose-200 text-rose-900 border border-rose-300'
-            }">
-              ${tc.passed ? 'PASS' : 'FAIL'}
-            </span>
-          </div>
-        `;
-
-        container.appendChild(row);
-      });
-    }
-
-    function copyValidationAuditLog() {
-      if (validationResultsStore.length === 0) {
-        showToast('No validation results to export. Run the suite first.', 'error');
-        return;
-      }
-
-      const passed = validationResultsStore.filter(r => r.passed).length;
-      const total = validationResultsStore.length;
-      let log = `=== SAT PSYCHOMETRIC SCORING ENGINE AUDIT LOG ===\n`;
-      log += `Timestamp: ${new Date().toISOString()}\n`;
-      log += `Result: ${passed}/${total} Assertions Passed (${Math.round((passed / total) * 100)}% Fidelity)\n`;
-      log += `Status: ${passed === total ? 'VERIFIED & COMPLIANT' : 'DEFECTS DETECTED'}\n\n`;
-
-      validationResultsStore.forEach(tc => {
-        log += `[${tc.passed ? 'PASS' : 'FAIL'}] ${tc.id.padEnd(10)} | ${tc.name}\n`;
-        log += `   Target:   "${tc.expected}"\n`;
-        log += `   Received: "${tc.actual}"\n`;
-        if (tc.details) log += `   Context:  ${tc.details}\n`;
-        log += `\n`;
-      });
-
-      const textArea = document.createElement("textarea");
-      textArea.value = log;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-999999px";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          showToast('Validation audit log copied to clipboard!', 'success');
-        } else {
-          showToast('Failed to copy audit log.', 'error');
-        }
-      } catch (err) {
-        showToast('Clipboard error copying audit log.', 'error');
-      }
-      document.body.removeChild(textArea);
+      if (emailInput) handleEmailAddition(emailInput.value);
     }
 
     function sendViaWebhook() {
@@ -2167,69 +2228,77 @@
     }
 
     function loadDemonstrationProfile() {
-      // Setup demo test taker
-      document.getElementById('participant-name').value = "Dr. Kenji Takahashi (Sample)";
-      document.getElementById('assessor-name').value = "University Clinical Center";
-      document.getElementById('clinical-notes').value = "Workplace chronic fatigue evaluation, insomnia, cervical pain.";
+      document.getElementById('participant-name').value = "Dr. Kenji Takahashi (Sample Profile)";
+      document.getElementById('assessor-name').value = "University Clinical Psychology Center";
+      document.getElementById('clinical-notes').value = "Workplace chronic fatigue evaluation, persistent cervical pain, affective exhaustion.";
 
-      state.participantName = "Dr. Kenji Takahashi (Sample)";
-      state.assessorName = "University Clinical Center";
-      state.clinicalNotes = "Workplace chronic fatigue evaluation, insomnia, cervical pain.";
+      state.participantName = "Dr. Kenji Takahashi (Sample Profile)";
+      state.assessorName = "University Clinical Psychology Center";
+      state.clinicalNotes = "Workplace chronic fatigue evaluation, persistent cervical pain, affective exhaustion.";
 
-      // Setup 3 demo emails
       state.recipientEmails = [
         "kenji.takahashi.demo@example.com",
-        "assessor.counseling@hospital.org",
+        "attending.clinician@hospital.org",
         "records@psych-evaluations.net"
       ];
       renderEmailChips();
 
-      // Pre-fill answers with an exhaustion-type depression profile
-      // High Obsessive (5/5), High Anxiety (4/5), High Self-Repression (16/20)
+      // 1. Genetic (High OBS: 5, High ANX: 4, CYC: 2, VIS: 3, AUT: 2, NOV: 1)
       const demoAnswers = {
-        // G-CYC (2/5)
         1: 1, 2: 0, 3: 1, 4: 0, 5: 0,
-        // G-VIS (3/5)
         6: 1, 7: 1, 8: 0, 9: 1, 10: 0,
-        // G-AUT (2/5)
         11: 1, 12: 1, 13: 0, 14: 0, 15: 0,
-        // G-OBS (5/5)
         16: 1, 17: 1, 18: 1, 19: 1, 20: 1,
-        // G-ANX (4/5)
         21: 1, 22: 1, 23: 1, 24: 0, 25: 1,
-        // G-NOV (1/5)
         26: 0, 27: 0, 28: 1, 29: 0, 30: 0
       };
+      for (let i = 1; i <= 30; i++) state.geneticAnswers[i] = demoAnswers[i];
 
-      for (let i = 1; i <= 30; i++) {
-        state.geneticAnswers[i] = demoAnswers[i];
-        const radio = document.querySelector(`input[name="genetic_item_${i}"][value="${demoAnswers[i]}"]`);
-        if (radio) radio.checked = true;
-      }
-
-      // Self Repression items (sum = 16/20)
+      // 2. Self-Repression (Sum = 16/20)
       const demoRepression = {
         'SR-01': 2, 'SR-02': 2, 'SR-03': 2, 'SR-04': 1, 'SR-05': 1,
         'SR-06': 2, 'SR-07': 2, 'SR-08': 2, 'SR-09': 1, 'SR-10': 1
       };
+      REPRESSION_ITEMS.forEach(it => state.repressionAnswers[it.code] = demoRepression[it.code]);
 
-      REPRESSION_ITEMS.forEach(item => {
-        const val = demoRepression[item.code];
-        state.repressionAnswers[item.code] = val;
-        const radio = document.querySelector(`input[name="repression_${item.code}"][value="${val}"]`);
-        if (radio) radio.checked = true;
-      });
+      // 3. Problem Solving (Active: 3/10, Evasive: 8/10 -> Net: 5/20 Maladaptive)
+      const demoCoping = {
+        'PS-01': 1, 'PS-02': 1, 'PS-03': 0, 'PS-04': 1, 'PS-05': 0,
+        'PS-06': 2, 'PS-07': 2, 'PS-08': 1, 'PS-09': 1, 'PS-10': 2
+      };
+      COPING_ITEMS.forEach(it => state.copingAnswers[it.code] = demoCoping[it.code]);
 
+      // 4. Self-Esteem (Innate: 3/10, Mask: 8/10 -> Gap: +5, Alignment: 25% Severe Alienation)
+      const demoSelfEsteem = {
+        'SE-01': 1, 'SE-02': 0, 'SE-03': 1, 'SE-04': 0, 'SE-05': 1,
+        'SE-06': 2, 'SE-07': 2, 'SE-08': 2, 'SE-09': 1, 'SE-10': 1
+      };
+      SELFESTEEM_ITEMS.forEach(it => state.selfEsteemAnswers[it.code] = demoSelfEsteem[it.code]);
+
+      // 5. Depression (D-Trait = 14/20 Severe Distress, D-10 endorsed)
+      const demoDepression = {
+        'D-01': 2, 'D-02': 2, 'D-03': 2, 'D-04': 2, 'D-05': 1,
+        'D-06': 2, 'D-07': 1, 'D-08': 1, 'D-09': 0, 'D-10': 1
+      };
+      DEPRESSION_ITEMS.forEach(it => state.depressionAnswers[it.code] = demoDepression[it.code]);
+
+      renderGeneticQuestions();
+      renderRepressionQuestions();
+      renderCopingQuestions();
+      renderSelfEsteemQuestions();
+      renderDepressionQuestions();
       updateAnsweredStats();
-      showToast('Loaded clinical demonstration profile (High Obsessive + High Repression)', 'info');
-      
-      // Auto-trigger calculation to show results right away
+
+      showToast('Loaded clinical demonstration profile (70 items filled)', 'info');
       calculateAndShowReport();
     }
 
     function resetAllResponses() {
       state.geneticAnswers = {};
       state.repressionAnswers = {};
+      state.copingAnswers = {};
+      state.selfEsteemAnswers = {};
+      state.depressionAnswers = {};
       state.recipientEmails = [];
 
       document.getElementById('participant-name').value = '';
@@ -2237,10 +2306,14 @@
       document.getElementById('clinical-notes').value = '';
       document.getElementById('email-input-field').value = '';
 
-      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
-
       renderEmailChips();
+      renderGeneticQuestions();
+      renderRepressionQuestions();
+      renderCopingQuestions();
+      renderSelfEsteemQuestions();
+      renderDepressionQuestions();
       updateAnsweredStats();
+
       goToStep(1);
       showToast('All fields and responses have been reset.', 'info');
     }
@@ -2265,10 +2338,182 @@
       }
 
       toast.classList.remove('opacity-0', 'translate-y-24', 'pointer-events-none');
+      setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-24', 'pointer-events-none'); }, 3500);
+    }
 
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-24', 'pointer-events-none');
-      }, 3500);
+    // Validation Suite Runner
+    let validationResultsStore = [];
+    function openValidationModal() {
+      document.getElementById('validation-modal').classList.remove('hidden');
+      runAutomatedValidationSuite();
+    }
+    function closeValidationModal() {
+      document.getElementById('validation-modal').classList.add('hidden');
+    }
+
+    function runAutomatedValidationSuite() {
+      const startTime = performance.now();
+      const results = [];
+
+      function assertCase(id, category, testName, actual, expected, details = '') {
+        const passed = (actual === expected);
+        results.push({ id, category, name: testName, actual: String(actual), expected: String(expected), passed, details });
+      }
+
+      // 1. Genetic BVA
+      assertCase('BVA-G0', 'BVA', 'Genetic Floor (0)', getGeneticTierPure(0), 'Non-Dominant');
+      assertCase('BVA-G3', 'BVA', 'Genetic Dominant Lower (4)', getGeneticTierPure(4), 'Dominant');
+      assertCase('BVA-G4', 'BVA', 'Genetic Ceiling (5)', getGeneticTierPure(5), 'Dominant');
+
+      // 2. Self-Repression BVA
+      assertCase('BVA-SR2', 'BVA', 'SR Healthy Upper (6)', getRepressionTierPure(6), 'Healthy');
+      assertCase('BVA-SR3', 'BVA', 'SR Moderate Lower (7)', getRepressionTierPure(7), 'Moderate');
+      assertCase('BVA-SR5', 'BVA', 'SR Severe Lower (11)', getRepressionTierPure(11), 'Severe');
+
+      // 3. Problem-Solving Coping BVA
+      assertCase('BVA-CP1', 'BVA', 'Coping Adaptive Lower (Net=14)', getCopingTierPure(14), 'Adaptive Coping');
+      assertCase('BVA-CP2', 'BVA', 'Coping Balanced Upper (Net=13)', getCopingTierPure(13), 'Balanced / Contextual');
+      assertCase('BVA-CP3', 'BVA', 'Coping Balanced Lower (Net=8)', getCopingTierPure(8), 'Balanced / Contextual');
+      assertCase('BVA-CP4', 'BVA', 'Coping Maladaptive Upper (Net=7)', getCopingTierPure(7), 'Maladaptive Evasive');
+
+      // 4. Self-Alignment Percentage BVA
+      assertCase('BVA-SE1', 'BVA', 'Self-Alignment High (80%)', getSelfAlignmentTierPure(80), 'High Alignment (Integrated Self)');
+      assertCase('BVA-SE2', 'BVA', 'Self-Alignment Moderate (79%)', getSelfAlignmentTierPure(79), 'Moderate (Conditional Self-Worth)');
+      assertCase('BVA-SE3', 'BVA', 'Self-Alignment Moderate Lower (50%)', getSelfAlignmentTierPure(50), 'Moderate (Conditional Self-Worth)');
+      assertCase('BVA-SE4', 'BVA', 'Self-Alignment Severe (49%)', getSelfAlignmentTierPure(49), 'Severe Alienation (Social Mask Distortion)');
+
+      // 5. Depressive Symptomatology BVA
+      assertCase('BVA-D1', 'BVA', 'D-Trait Low Risk Upper (4)', getDepressionTierPure(4), 'Low Risk');
+      assertCase('BVA-D2', 'BVA', 'D-Trait Mild Lower (5)', getDepressionTierPure(5), 'Mild Distress');
+      assertCase('BVA-D3', 'BVA', 'D-Trait Moderate Lower (9)', getDepressionTierPure(9), 'Moderate Distress');
+      assertCase('BVA-D4', 'BVA', 'D-Trait Severe Lower (14)', getDepressionTierPure(14), 'Severe Distress');
+
+      // 6. Scale Item Inventory Integrity (70 Items Total)
+      assertCase('CNT-GEN', 'ISO', 'Genetic 30 Items Count', GENETIC_SUBSCALES.reduce((a, b) => a + b.items.length, 0), 30);
+      assertCase('CNT-REP', 'ISO', 'Self-Repression 10 Items Count', REPRESSION_ITEMS.length, 10);
+      assertCase('CNT-COP', 'ISO', 'Problem-Solving 10 Items Count', COPING_ITEMS.length, 10);
+      assertCase('CNT-SE', 'ISO', 'Self-Esteem 10 Items Count', SELFESTEEM_ITEMS.length, 10);
+      assertCase('CNT-DEP', 'ISO', 'D-Trait 10 Items Count', DEPRESSION_ITEMS.length, 10);
+
+      const endTime = performance.now();
+      const duration = Math.round((endTime - startTime) * 100) / 100;
+
+      validationResultsStore = results;
+      renderValidationModalUI(results, duration);
+      showToast(`Validated: ${results.filter(r => r.passed).length}/${results.length} assertions passed.`, 'success');
+    }
+
+    function renderValidationModalUI(results, duration) {
+      const total = results.length;
+      const passed = results.filter(r => r.passed).length;
+      const failed = results.filter(r => !r.passed).length;
+
+      document.getElementById('suite-stat-total').textContent = total;
+      document.getElementById('suite-stat-passed').textContent = passed;
+      document.getElementById('suite-stat-failed').textContent = failed;
+      document.getElementById('suite-stat-time').textContent = `${duration} ms`;
+
+      const badge = document.getElementById('validation-overall-badge');
+      if (failed === 0) {
+        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300';
+        badge.textContent = '100% PASS (5 SCALES VERIFIED)';
+      } else {
+        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-100 text-rose-800 border border-rose-300';
+        badge.textContent = `${failed} ASSERTION DEFECTS`;
+      }
+
+      const container = document.getElementById('validation-test-list');
+      container.innerHTML = results.map(tc => `
+        <div class="p-3 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition ${tc.passed ? 'bg-white border-slate-200' : 'bg-rose-50 border-rose-300'}">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] ${tc.passed ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">${tc.passed ? '&check;' : '&times;'}</span>
+            <span class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">${tc.id}</span>
+            <span class="font-semibold text-slate-900 text-xs">${tc.name}</span>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-[11px]">
+            <span class="text-slate-500">Exp: "${tc.expected}" / Rec: "${tc.actual}"</span>
+            <span class="px-2 py-0.5 rounded-full font-bold text-[10px] ${tc.passed ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-200 text-rose-900'}">${tc.passed ? 'PASS' : 'FAIL'}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function copyValidationAuditLog() {
+      if (validationResultsStore.length === 0) return;
+      let log = `=== SAT PSYCHOMETRIC SCORING AUDIT (5 SCALES) ===\n`;
+      validationResultsStore.forEach(tc => {
+        log += `[${tc.passed ? 'PASS' : 'FAIL'}] ${tc.id} - ${tc.name} (Exp: ${tc.expected}, Rec: ${tc.actual})\n`;
+      });
+      navigator.clipboard.writeText(log).then(() => showToast('Audit log copied!', 'success'));
+    }
+
+    function initApp() {
+      const dateField = document.getElementById('evaluation-date');
+      if (dateField) dateField.value = state.evaluationDate;
+
+      renderEmailChips();
+      renderGeneticQuestions();
+      renderRepressionQuestions();
+      renderCopingQuestions();
+      renderSelfEsteemQuestions();
+      renderDepressionQuestions();
+      updateAnsweredStats();
+
+      const emailInput = document.getElementById('email-input-field');
+      if (emailInput) {
+        emailInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            handleEmailAddition(emailInput.value);
+          }
+        });
+      }
+
+      const tab1 = document.getElementById('tab-step-1');
+      const tab2 = document.getElementById('tab-step-2');
+      const tab3 = document.getElementById('tab-step-3');
+
+      if (tab1) tab1.onclick = () => goToStep(1);
+      if (tab2) tab2.onclick = () => goToStep(2);
+      if (tab3) tab3.onclick = () => {
+        if (state.scores.repressionTotal || Object.keys(state.scores.genetic).length > 0) goToStep(3);
+      };
+
+      const demoBtn = document.getElementById('demo-btn');
+      if (demoBtn) demoBtn.onclick = loadDemonstrationProfile;
+
+      const resetBtn = document.getElementById('reset-btn');
+      if (resetBtn) resetBtn.onclick = resetAllResponses;
+    }
+
+    // Window bindings
+    window.goToStep = goToStep;
+    window.handleAddEmailClick = handleAddEmailClick;
+    window.handleEmailAddition = handleEmailAddition;
+    window.removeEmail = removeEmail;
+    window.loadDemonstrationProfile = loadDemonstrationProfile;
+    window.resetAllResponses = resetAllResponses;
+    window.openValidationModal = openValidationModal;
+    window.closeValidationModal = closeValidationModal;
+    window.runAutomatedValidationSuite = runAutomatedValidationSuite;
+    window.copyValidationAuditLog = copyValidationAuditLog;
+    window.openEmailDispatcherModal = openEmailDispatcherModal;
+    window.closeEmailModal = closeEmailModal;
+    window.addEmailFromModal = addEmailFromModal;
+    window.dispatchViaMailto = dispatchViaMailto;
+    window.copyReportToClipboard = copyReportToClipboard;
+    window.sendViaWebhook = sendViaWebhook;
+    window.setGeneticAnswer = setGeneticAnswer;
+    window.setRepressionAnswer = setRepressionAnswer;
+    window.setCopingAnswer = setCopingAnswer;
+    window.setSelfEsteemAnswer = setSelfEsteemAnswer;
+    window.setDepressionAnswer = setDepressionAnswer;
+    window.calculateAndShowReport = calculateAndShowReport;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
     }
   </script>
 </body>
